@@ -56,15 +56,87 @@
 		C7F01ED627BBAC6300DC9EE4 /* Maps Project */ = {
 			isa = PBXGroup;
 			children = (
-				C7F01ED727BBAC6300DC9EE4 /* AppDelegate.swift */,
-				C7F01ED927BBAC6300DC9EE4 /* SceneDelegate.swift */,
-				C7F01EDB27BBAC6300DC9EE4 /* ViewController.swift */,
-				C7F01EDD27BBAC6300DC9EE4 /* Main.storyboard */,
-				C7F01EE027BBAC6300DC9EE4 /* Assets.xcassets */,
-				C7F01EE227BBAC6300DC9EE4 /* LaunchScreen.storyboard */,
-				C7F01EE527BBAC6300DC9EE4 /* Info.plist */,
+				C7F01EEB27BBACD500DC9EE4 /* Application */,
+				C7F01EEF27BBAD0300DC9EE4 /* Maps Project */,
+				C7F01EF327BBAD4700DC9EE4 /* Supporting files */,
 			);
 			path = "Maps Project";
+			sourceTree = "<group>";
+		};
+		C7F01EEB27BBACD500DC9EE4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01EEE27BBACF900DC9EE4 /* Model */,
+				C7F01EED27BBACF100DC9EE4 /* View */,
+				C7F01EEC27BBACE400DC9EE4 /* Controller */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C7F01EEC27BBACE400DC9EE4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01ED727BBAC6300DC9EE4 /* AppDelegate.swift */,
+				C7F01ED927BBAC6300DC9EE4 /* SceneDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C7F01EED27BBACF100DC9EE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01EE227BBAC6300DC9EE4 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C7F01EEE27BBACF900DC9EE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C7F01EEF27BBAD0300DC9EE4 /* Maps Project */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01EF227BBAD3000DC9EE4 /* Model */,
+				C7F01EF127BBAD2D00DC9EE4 /* View */,
+				C7F01EF027BBAD2400DC9EE4 /* Controller */,
+			);
+			path = "Maps Project";
+			sourceTree = "<group>";
+		};
+		C7F01EF027BBAD2400DC9EE4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01EDB27BBAC6300DC9EE4 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C7F01EF127BBAD2D00DC9EE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01EDD27BBAC6300DC9EE4 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C7F01EF227BBAD3000DC9EE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C7F01EF327BBAD4700DC9EE4 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01EE027BBAC6300DC9EE4 /* Assets.xcassets */,
+				C7F01EE527BBAC6300DC9EE4 /* Info.plist */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +363,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SMZH48C953;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Maps Project/Info.plist";
+				INFOPLIST_FILE = "Maps Project/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -306,7 +378,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,7 +391,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SMZH48C953;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Maps Project/Info.plist";
+				INFOPLIST_FILE = "Maps Project/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -334,7 +406,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
