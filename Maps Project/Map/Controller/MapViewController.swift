@@ -8,14 +8,14 @@
 import GoogleMaps
 import UIKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        GMSServices.provideAPIKey("AIzaSyBoXjLdkEsN8eTWEMHCajqLavHxc7-s3Ms")
-        // Do any additional setup after loading the view.
     }
-
-
+    
+    override func loadView() {
+        super.loadView()
+    }
 }
 
