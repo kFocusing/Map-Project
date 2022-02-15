@@ -69,6 +69,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		C775D79127BBE65500EF6568 /* App&SceneDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C7F01ED727BBAC6300DC9EE4 /* AppDelegate.swift */,
+				C7F01ED927BBAC6300DC9EE4 /* SceneDelegate.swift */,
+			);
+			path = "App&SceneDelegate";
+			sourceTree = "<group>";
+		};
 		C7F01ECB27BBAC6300DC9EE4 = {
 			isa = PBXGroup;
 			children = (
@@ -90,8 +99,8 @@
 		C7F01ED627BBAC6300DC9EE4 /* Maps Project */ = {
 			isa = PBXGroup;
 			children = (
-				C775D78E27BBE1D000EF6568 /* Services */,
 				C7F01EEF27BBAD0300DC9EE4 /* Map */,
+				C775D78E27BBE1D000EF6568 /* Services */,
 				C7F01EF327BBAD4700DC9EE4 /* Supporting files */,
 			);
 			path = "Maps Project";
@@ -103,6 +112,7 @@
 				C7F01EF227BBAD3000DC9EE4 /* Model */,
 				C7F01EF127BBAD2D00DC9EE4 /* View */,
 				C7F01EF027BBAD2400DC9EE4 /* Controller */,
+				C775D79127BBE65500EF6568 /* App&SceneDelegate */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -111,8 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				C7F01EDB27BBAC6300DC9EE4 /* MapViewController.swift */,
-				C7F01ED727BBAC6300DC9EE4 /* AppDelegate.swift */,
-				C7F01ED927BBAC6300DC9EE4 /* SceneDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
