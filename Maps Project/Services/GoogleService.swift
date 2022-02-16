@@ -5,7 +5,9 @@
 //  Created by Danylo Klymov on 15.02.2022.
 //
 
+
 import GoogleMaps
+import GooglePlaces
 
 class GoogleService {
     
@@ -21,5 +23,6 @@ class GoogleService {
     // MARK: - Internal -
     func startServices() {
         GMSServices.provideAPIKey(apiKey)
+        GMSPlacesClient.provideAPIKey(apiKey)
     }
 }

@@ -10,10 +10,12 @@ import GoogleMaps
 import UIKit
 
 class MapViewController: UIViewController {
-    
+
     lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 50
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         return locationManager
@@ -25,26 +27,26 @@ class MapViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
         }
+        
     }
     
     private func getMarkerAndCameraOnDefaultLocale() {
         let camera = GMSCameraPosition.camera(withLatitude: 47.843468, longitude: 35.130487, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
-        getMarker(latitude: 47.843468, longitude: 35.130487, map: mapView)
+        setDefaultMapSettings(map: mapView)
     }
     
     private func getMarkerAndCameraToLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 16.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
-        getMarker(latitude: latitude, longitude: longitude, map: mapView)
+        setDefaultMapSettings(map: mapView)
     }
     
-    private func getMarker(latitude: CLLocationDegrees, longitude: CLLocationDegrees, map: GMSMapView) {
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.map = map
+    private func setDefaultMapSettings(map: GMSMapView) {
+        map.settings.myLocationButton = true
+        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        map.isMyLocationEnabled = true
+        view = map
     }
 }
 

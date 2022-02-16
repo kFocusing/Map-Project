@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '15.0'
 
 post_install do |installer|
   installer.pods_project.build_configurations.each do |config|
@@ -13,5 +13,6 @@ target 'Maps Project' do
 
   # Pods for Maps Project
   pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
 end
