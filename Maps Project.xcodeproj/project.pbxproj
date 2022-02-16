@@ -100,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				C7F01EEF27BBAD0300DC9EE4 /* Map */,
+				C775D79127BBE65500EF6568 /* App&SceneDelegate */,
 				C775D78E27BBE1D000EF6568 /* Services */,
 				C7F01EF327BBAD4700DC9EE4 /* Supporting files */,
 			);
@@ -112,7 +113,6 @@
 				C7F01EF227BBAD3000DC9EE4 /* Model */,
 				C7F01EF127BBAD2D00DC9EE4 /* View */,
 				C7F01EF027BBAD2400DC9EE4 /* Controller */,
-				C775D79127BBE65500EF6568 /* App&SceneDelegate */,
 			);
 			path = Map;
 			sourceTree = "<group>";
