@@ -10,49 +10,51 @@ import GoogleMaps
 import UIKit
 
 class MapViewController: UIViewController {
-    //MARK: - Lazy variables -
-    lazy var locationManager: CLLocationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 50
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        return locationManager
-    }()
+    
+    //MARK: - Variables -
+    private var locationManager = LocationManager()
+    private let defaultCameraZoom: Float = 16
+    private var currentLocation: CLLocation?
+    private var mapView = GMSMapView()
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        } else {
-            getMarkerAndCameraOnDefaultLocale()
-        }
+        setupLocationManager()
+        setupMapView()
     }
     
-    //MARK: - Private Functions -
-    private func getMarkerAndCameraOnDefaultLocale() {
-        let camera = GMSCameraPosition.camera(withLatitude: 47.843468, longitude: 35.130487, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        setDefaultMapSettings(map: mapView)
-        getMarkerToLocation(latitude: 47.843468, longitude: 35.130487, map: mapView)
+    //MARK: - Private -
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.start()
     }
     
-    private func getMarkerAndCameraToLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 16.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        setDefaultMapSettings(map: mapView)
-        getMarkerToLocation(latitude: latitude, longitude: longitude, map: mapView)
+    private func getCameraToLocation(location: CLLocation) {
+        let position = GMSCameraPosition(latitude: location.coordinate.latitude,
+                                         longitude: location.coordinate.longitude,
+                                         zoom: defaultCameraZoom)
+        mapView.animate(to: position)
     }
     
-    private func setDefaultMapSettings(map: GMSMapView) {
-        map.settings.myLocationButton = true
-        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        map.isMyLocationEnabled = true
-        view = map
+    
+    private func setupMapView() {
+        let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultCameraZoom)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.setMinZoom(14, maxZoom: 20)
+        mapView.settings.compassButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
+        mapView.settings.scrollGestures = true
+        mapView.settings.zoomGestures = true
+        mapView.settings.rotateGestures = true
+        mapView.settings.tiltGestures = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.isIndoorEnabled = false
+        self.view = mapView
     }
     
+    // remake for google places
     private func getMarkerToLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, map: GMSMapView) {
         let marker = GMSMarker()
         let cordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -61,27 +63,19 @@ class MapViewController: UIViewController {
         marker.map = map
     }
     
-    private func reverseGeocode(coordinate: CLLocationCoordinate2D, marker: GMSMarker) {
+    private func reverseGeocode(coordinate: CLLocationCoordinate2D, marker: GMSMarker? = nil) {
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             guard let address = response?.firstResult() else { return }
             let lines = address.lines ?? [""]
-            marker.snippet = lines.joined(separator: ", ")
+            marker?.snippet = lines.joined(separator: ", ")
         }
     }
 }
 
 
-//MARK: - Extensions -
-//MARK: - CLLocationManagerDelegate -
-extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        getMarkerAndCameraToLocation(latitude: location.coordinate.latitude,
-                                     longitude: location.coordinate.longitude)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+extension MapViewController : LocationManagerDelegate {
+    func didUpdateLocation(location: CLLocation) {
+        getCameraToLocation(location: location)
     }
 }
