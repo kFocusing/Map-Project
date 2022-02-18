@@ -16,6 +16,9 @@ class MapViewController: UIViewController {
     private let defaultCameraZoom: Float = 16
     private var currentLocation: CLLocation?
     private var mapView = GMSMapView()
+    private var networkService = NetworkService()
+    private var places = [someLocationRequest]()
+    
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -54,28 +57,57 @@ class MapViewController: UIViewController {
         self.view = mapView
     }
     
-    // remake for google places
-    private func getMarkerToLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, map: GMSMapView) {
-        let marker = GMSMarker()
-        let cordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.position = cordinate
-        reverseGeocode(coordinate: cordinate, marker: marker)
-        marker.map = map
+    //MARK: - Private -
+    private func getAroundPlaces(location: CLLocation) {
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.coordinate.latitude),\(location.coordinate.longitude)&radius=5000&type=restaurant&key=AIzaSyBoXjLdkEsN8eTWEMHCajqLavHxc7-s3Ms"
+        
+        guard let url = URL(string: urlString) else { return }
+        NetworkService.shared.getData(url: url) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let someLocationRequest):
+                self.updatePlaces(someLocationRequest: someLocationRequest)
+            }
+        }
+        getMarkersInMap()
     }
     
-    private func reverseGeocode(coordinate: CLLocationCoordinate2D, marker: GMSMarker? = nil) {
-        let geocoder = GMSGeocoder()
-        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            guard let address = response?.firstResult() else { return }
-            let lines = address.lines ?? [""]
-            marker?.snippet = lines.joined(separator: ", ")
+    private func updatePlaces(someLocationRequest: [someLocationRequest]) {
+        DispatchQueue.main.async {
+            self.places = someLocationRequest
         }
+    }
+    
+    private func getMarkersInMap() {
+        for place in places {
+            guard let lat = place.geometry?.location?.lat,
+                  let lng = place.geometry?.location?.lng else { return }
+            let cordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+            
+        
+            let name = place.name ?? ""
+            let vicinity = place.vicinity ?? ""
+            let description = (name, vicinity)
+            
+            getMarkerToLocation(cordinate: cordinate, description: description)
+        }
+    }
+    
+    private func getMarkerToLocation(cordinate: CLLocationCoordinate2D, description: (String, String)) {
+        let marker = GMSMarker()
+        marker.title = description.0
+        marker.snippet = description.1
+        marker.position = cordinate
+        marker.map = mapView
     }
 }
 
-
-extension MapViewController : LocationManagerDelegate {
+//MARK: - Extensions -
+//MARK: - LocationManagerDelegate -
+extension MapViewController: LocationManagerDelegate {
     func didUpdateLocation(location: CLLocation) {
         getCameraToLocation(location: location)
+        getAroundPlaces(location: location)
     }
 }
