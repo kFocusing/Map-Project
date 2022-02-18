@@ -40,7 +40,6 @@ class MapViewController: UIViewController {
         mapView.animate(to: position)
     }
     
-    
     private func setupMapView() {
         let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultCameraZoom)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -57,7 +56,6 @@ class MapViewController: UIViewController {
         self.view = mapView
     }
     
-    //MARK: - Private -
     private func getAroundPlaces(location: CLLocation) {
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.coordinate.latitude),\(location.coordinate.longitude)&radius=5000&type=restaurant&key=AIzaSyBoXjLdkEsN8eTWEMHCajqLavHxc7-s3Ms"
         

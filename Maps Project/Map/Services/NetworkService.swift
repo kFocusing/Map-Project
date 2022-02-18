@@ -39,9 +39,10 @@ class NetworkService {
         }
     }
     
+    //MARK: - Enum -
+    //MARK: - NetworkingError -
     private enum NetworkingError: Error {
         case failedResponseJSON
         case failedParseJSON
     }
-    
 }

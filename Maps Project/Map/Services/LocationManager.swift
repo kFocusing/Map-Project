@@ -21,6 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     // MARK: - Variables -
     private let locationManager : CLLocationManager
     
+    
     weak var delegate: LocationManagerDelegate?
     
     //MARK: - Life Cycle -
