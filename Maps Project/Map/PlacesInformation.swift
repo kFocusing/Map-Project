@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - LocationRequest -
-struct PlacesInformation: Codable {
-    let results: [PlaceInfromation]
+struct PlacesResponse: Codable {
+    let results: [PlaceModel]
     let status: String
 }
 
 // MARK: - someLocationRequest -
-struct PlaceInfromation: Codable {
+struct PlaceModel: Codable {
     let geometry: Geometry?
     let icon: String?
     let iconBackgroundColor: String?

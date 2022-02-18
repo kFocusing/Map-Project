@@ -11,32 +11,18 @@ class NetworkService {
     //MARK: - Static -
     static let shared = NetworkService()
     
+    private init() {}
+    
     //MARK: - Internal -
-    func getData(url: URL, completion: @escaping (Result<[PlaceInfromation], Error>) -> Void) {
+    func getData<T: Codable>(url: URL, expacting: T.Type, completion: @escaping (Result<Data, Error>) -> Void) {
         let session = URLSession.shared
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
                 completion(.failure(NetworkingError.failedResponseJSON))
                 return
             }
-            if let someLocationRequest = self.parseJson(data) {
-                let placesArray = someLocationRequest.results
-                completion(.success(placesArray))
-            } else {
-                completion(.failure(NetworkingError.failedParseJSON))
-            }
+            completion(.success(data))
         }.resume()
-    }
-    
-    //MARK: - Private -
-    private func parseJson(_ data: Data) -> PlacesInformation? {
-        let decoder = JSONDecoder()
-        do {
-            let decodateData = try decoder.decode(PlacesInformation.self, from: data)
-            return decodateData
-        } catch {
-            return nil
-        }
     }
     
     //MARK: - Enum -

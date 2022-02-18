@@ -15,14 +15,14 @@ class GoogleService {
     static let shared = GoogleService()
     
     // MARK: - Private properties -
-    private let apiKey = "AIzaSyBoXjLdkEsN8eTWEMHCajqLavHxc7-s3Ms"
+    static let apiKey = "AIzaSyBoXjLdkEsN8eTWEMHCajqLavHxc7-s3Ms"
     
     // MARK: - Life Cycle -
     private init() {}
     
     // MARK: - Internal -
     func startServices() {
-        GMSServices.provideAPIKey(apiKey)
-        GMSPlacesClient.provideAPIKey(apiKey)
+        GMSServices.provideAPIKey(GoogleService.apiKey)
+        GMSPlacesClient.provideAPIKey(GoogleService.apiKey)
     }
 }

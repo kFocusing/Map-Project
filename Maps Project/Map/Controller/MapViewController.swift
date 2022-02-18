@@ -12,11 +12,10 @@ import UIKit
 class MapViewController: UIViewController {
     
     //MARK: - Variables -
-    private var locationManager = LocationManager.shared
     private let defaultCameraZoom: Float = 16
     private var mapView = GMSMapView()
-    private var networkService = NetworkService.shared
-    private var places = [PlaceInfromation]()
+    private var places = [PlaceModel]()
+    
     
     
     //MARK: - Life Cycle -
@@ -28,8 +27,8 @@ class MapViewController: UIViewController {
     
     //MARK: - Private -
     private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.start()
+        LocationManager.shared.delegate = self
+        LocationManager.shared.start()
     }
     
     private func getCameraToLocation(location: CLLocation) {
@@ -56,20 +55,13 @@ class MapViewController: UIViewController {
     }
     
     private func getAroundPlaces(location: CLLocation) {
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.coordinate.latitude),\(location.coordinate.longitude)&radius=5000&type=restaurant&key=AIzaSyBoXjLdkEsN8eTWEMHCajqLavHxc7-s3Ms"
-        
-        guard let url = URL(string: urlString) else { return }
-        NetworkService.shared.getData(url: url) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let placeInfromation):
-                self.updatePlaces(placeInfromation: placeInfromation)
-            }
+        PlacesService.shared.fetchNearbyPlaces(location: location) { places in
+            guard let places = places?.results else { return }
+            self.updatePlaces(placeInfromation: places)
         }
     }
     
-    private func updatePlaces(placeInfromation: [PlaceInfromation]) {
+    private func updatePlaces(placeInfromation: [PlaceModel]) {
         DispatchQueue.main.async {
             self.places = placeInfromation
             self.getMarkersInMap()

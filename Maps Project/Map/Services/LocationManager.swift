@@ -9,6 +9,9 @@ import Foundation
 import CoreLocation
 import GoogleMaps
 
+
+//MARK: - Protocols -
+//MARK: - LocationManagerDelegate -
 protocol LocationManagerDelegate: AnyObject {
     func didUpdateLocation(location: CLLocation)
 }
@@ -19,15 +22,14 @@ class LocationManager: NSObject {
     static let shared = LocationManager()
     
     // MARK: - Variables -
-    private let locationManager : CLLocationManager
+    private let locationManager = CLLocationManager()
     
     weak var delegate: LocationManagerDelegate?
     
     //MARK: - Life Cycle -
-    override init() {
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    override private init() {
         super.init()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
     }
     
@@ -44,6 +46,8 @@ class LocationManager: NSObject {
     }
 }
 
+//MARK: - Extensions -
+//MARK: - CLLocationManagerDelegate -
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		85E8A5E5DC2FB1B38CD31F8F /* Pods_Maps_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42FC7BC538C4BF72EBD2EC /* Pods_Maps_Project.framework */; };
 		C71D417D27BF979F00FD3E1E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D417C27BF979F00FD3E1E /* NetworkService.swift */; };
+		C71D544627BFEEA900E514BB /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D544527BFEEA900E514BB /* PlacesService.swift */; };
 		C775D79027BBE1DB00EF6568 /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775D78F27BBE1DB00EF6568 /* GoogleService.swift */; };
 		C7C6F77727BE40230076BD36 /* PlacesInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6F77627BE40230076BD36 /* PlacesInformation.swift */; };
 		C7C6F77927BE402F0076BD36 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6F77827BE402F0076BD36 /* LocationManager.swift */; };
@@ -24,6 +25,7 @@
 		3B05E9D653C69DEACEEDDA20 /* Pods-Maps Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maps Project.debug.xcconfig"; path = "Target Support Files/Pods-Maps Project/Pods-Maps Project.debug.xcconfig"; sourceTree = "<group>"; };
 		7E5B64C1859A77A2865645B7 /* Pods-Maps Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maps Project.release.xcconfig"; path = "Target Support Files/Pods-Maps Project/Pods-Maps Project.release.xcconfig"; sourceTree = "<group>"; };
 		C71D417C27BF979F00FD3E1E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C71D544527BFEEA900E514BB /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
 		C775D78F27BBE1DB00EF6568 /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
 		C7C6F77627BE40230076BD36 /* PlacesInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlacesInformation.swift; path = "Maps Project/Map/PlacesInformation.swift"; sourceTree = SOURCE_ROOT; };
 		C7C6F77827BE402F0076BD36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				C775D78F27BBE1DB00EF6568 /* GoogleService.swift */,
 				C7C6F77827BE402F0076BD36 /* LocationManager.swift */,
 				C71D417C27BF979F00FD3E1E /* NetworkService.swift */,
+				C71D544527BFEEA900E514BB /* PlacesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				C7F01ED827BBAC6300DC9EE4 /* AppDelegate.swift in Sources */,
 				C7F01EDA27BBAC6300DC9EE4 /* SceneDelegate.swift in Sources */,
 				C71D417D27BF979F00FD3E1E /* NetworkService.swift in Sources */,
+				C71D544627BFEEA900E514BB /* PlacesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
