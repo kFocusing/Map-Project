@@ -12,7 +12,7 @@ class NetworkService {
     static let shared = NetworkService()
     
     //MARK: - Internal -
-    func getData(url: URL, completion: @escaping (Result<[someLocationRequest], Error>) -> Void) {
+    func getData(url: URL, completion: @escaping (Result<[PlaceInfromation], Error>) -> Void) {
         let session = URLSession.shared
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
@@ -29,10 +29,10 @@ class NetworkService {
     }
     
     //MARK: - Private -
-    private func parseJson(_ data: Data) -> LocationRequest? {
+    private func parseJson(_ data: Data) -> PlacesInformation? {
         let decoder = JSONDecoder()
         do {
-            let decodateData = try decoder.decode(LocationRequest.self, from: data)
+            let decodateData = try decoder.decode(PlacesInformation.self, from: data)
             return decodateData
         } catch {
             return nil

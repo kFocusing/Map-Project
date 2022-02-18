@@ -13,14 +13,13 @@ protocol LocationManagerDelegate: AnyObject {
     func didUpdateLocation(location: CLLocation)
 }
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationManager: NSObject {
     
     // MARK: - Shared instance -
     static let shared = LocationManager()
     
     // MARK: - Variables -
     private let locationManager : CLLocationManager
-    
     
     weak var delegate: LocationManagerDelegate?
     
@@ -43,7 +42,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func stop() {
         locationManager.stopUpdatingLocation()
     }
-    
+}
+
+extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         delegate?.didUpdateLocation(location: location)
@@ -53,4 +54,3 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
 }
-

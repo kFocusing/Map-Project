@@ -12,12 +12,11 @@ import UIKit
 class MapViewController: UIViewController {
     
     //MARK: - Variables -
-    private var locationManager = LocationManager()
+    private var locationManager = LocationManager.shared
     private let defaultCameraZoom: Float = 16
-    private var currentLocation: CLLocation?
     private var mapView = GMSMapView()
-    private var networkService = NetworkService()
-    private var places = [someLocationRequest]()
+    private var networkService = NetworkService.shared
+    private var places = [PlaceInfromation]()
     
     
     //MARK: - Life Cycle -
@@ -64,16 +63,16 @@ class MapViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print(error)
-            case .success(let someLocationRequest):
-                self.updatePlaces(someLocationRequest: someLocationRequest)
+            case .success(let placeInfromation):
+                self.updatePlaces(placeInfromation: placeInfromation)
             }
         }
-        getMarkersInMap()
     }
     
-    private func updatePlaces(someLocationRequest: [someLocationRequest]) {
+    private func updatePlaces(placeInfromation: [PlaceInfromation]) {
         DispatchQueue.main.async {
-            self.places = someLocationRequest
+            self.places = placeInfromation
+            self.getMarkersInMap()
         }
     }
     
@@ -83,7 +82,7 @@ class MapViewController: UIViewController {
                   let lng = place.geometry?.location?.lng else { return }
             let cordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             
-        
+            
             let name = place.name ?? ""
             let vicinity = place.vicinity ?? ""
             let description = (name, vicinity)
@@ -105,7 +104,8 @@ class MapViewController: UIViewController {
 //MARK: - LocationManagerDelegate -
 extension MapViewController: LocationManagerDelegate {
     func didUpdateLocation(location: CLLocation) {
-        getCameraToLocation(location: location)
-        getAroundPlaces(location: location)
+            mapView.clear()
+            getCameraToLocation(location: location)
+            getAroundPlaces(location: location)
     }
 }

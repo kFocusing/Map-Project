@@ -1,20 +1,20 @@
 //
 //  LocationInformation.swift
 //  Maps Project
-//
+///Users/klymov/Desktop/Maps Project/Maps Project/Map/LocationRequest.swift
 //  Created by Danylo Klymov on 17.02.2022.
 //
 
 import Foundation
 
 // MARK: - LocationRequest -
-struct LocationRequest: Codable {
-    let results: [someLocationRequest]
+struct PlacesInformation: Codable {
+    let results: [PlaceInfromation]
     let status: String
 }
 
 // MARK: - someLocationRequest -
-struct someLocationRequest: Codable {
+struct PlaceInfromation: Codable {
     let geometry: Geometry?
     let icon: String?
     let iconBackgroundColor: String?
