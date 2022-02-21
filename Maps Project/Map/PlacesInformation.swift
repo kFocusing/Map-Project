@@ -1,7 +1,7 @@
 //
 //  LocationInformation.swift
 //  Maps Project
-///Users/klymov/Desktop/Maps Project/Maps Project/Map/LocationRequest.swift
+//
 //  Created by Danylo Klymov on 17.02.2022.
 //
 

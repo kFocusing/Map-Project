@@ -16,8 +16,6 @@ class MapViewController: UIViewController {
     private var mapView: GMSMapView!
     private var places = [PlaceModel]()
     
-    
-    
     //MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +29,7 @@ class MapViewController: UIViewController {
         LocationManager.shared.start()
     }
     
-    private func getCameraToLocation(location: CLLocation) {
+    private func setCameraToLocation(location: CLLocation) {
         let position = GMSCameraPosition(latitude: location.coordinate.latitude,
                                          longitude: location.coordinate.longitude,
                                          zoom: defaultCameraZoom)
@@ -55,20 +53,20 @@ class MapViewController: UIViewController {
     }
     
     private func getAroundPlaces(location: CLLocation) {
-        PlacesService.shared.fetchNearbyPlaces(location: location) { places in
+        PlacesService.shared.fetchNearbyPlaces(location: location) { [weak self] places in
             guard let places = places?.results else { return }
-            self.updatePlaces(placeInfromation: places)
+            self?.updatePlaces(placeInfromation: places)
         }
     }
     
     private func updatePlaces(placeInfromation: [PlaceModel]) {
         DispatchQueue.main.async {
             self.places = placeInfromation
-            self.getMarkersInMap()
+            self.setAroundsMarkersInMap()
         }
     }
     
-    private func getMarkersInMap() {
+    private func setAroundsMarkersInMap() {
         for place in places {
             guard let lat = place.geometry?.location?.lat,
                   let lng = place.geometry?.location?.lng else { return }
@@ -77,16 +75,18 @@ class MapViewController: UIViewController {
             
             let name = place.name ?? ""
             let vicinity = place.vicinity ?? ""
-            let description = (name, vicinity)
+            let description = (placeName: name, placeAddress: vicinity)
             
-            getMarkerToLocation(cordinate: cordinate, description: description)
+            setMarkerToLocation(cordinate: cordinate, description: description)
         }
     }
     
-    private func getMarkerToLocation(cordinate: CLLocationCoordinate2D, description: (String, String)) {
+    private func setMarkerToLocation(cordinate: CLLocationCoordinate2D,
+                                     description: (placeName: String,
+                                                   placeAddress: String)) {
         let marker = GMSMarker()
-        marker.title = description.0
-        marker.snippet = description.1
+        marker.title = description.placeName
+        marker.snippet = description.placeAddress
         marker.position = cordinate
         marker.map = mapView
     }
@@ -97,7 +97,7 @@ class MapViewController: UIViewController {
 extension MapViewController: LocationManagerDelegate {
     func didUpdateLocation(location: CLLocation) {
             mapView.clear()
-            getCameraToLocation(location: location)
+            setCameraToLocation(location: location)
             getAroundPlaces(location: location)
     }
 }
