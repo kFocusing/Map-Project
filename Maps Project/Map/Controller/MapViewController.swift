@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
     
     //MARK: - Variables -
     private let defaultCameraZoom: Float = 16
-    private var mapView = GMSMapView()
+    private var mapView: GMSMapView!
     private var places = [PlaceModel]()
     
     
