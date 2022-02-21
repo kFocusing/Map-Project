@@ -60,9 +60,10 @@ class MapViewController: UIViewController {
     }
     
     private func updatePlaces(placeInfromation: [PlaceModel]) {
-        DispatchQueue.main.async {
-            self.places = placeInfromation
-            self.setAroundsMarkersInMap()
+        DispatchQueue.main.async { [weak self] in
+            self?.mapView.clear()
+            self?.places = placeInfromation
+            self?.setAroundsMarkersInMap()
         }
     }
     
@@ -70,7 +71,6 @@ class MapViewController: UIViewController {
         for place in places {
             guard let lat = place.geometry?.location?.lat,
                   let lng = place.geometry?.location?.lng else { return }
-
             let name = place.name ?? ""
             let vicinity = place.vicinity ?? ""
             let description = (placeName: name, placeAddress: vicinity)
@@ -94,7 +94,7 @@ class MapViewController: UIViewController {
 //MARK: - LocationManagerDelegate -
 extension MapViewController: LocationManagerDelegate {
     func didUpdateLocation(location: CLLocation) {
-            setCameraToLocation(location: location)
-            getAroundPlaces(location: location)
+        setCameraToLocation(location: location)
+        getAroundPlaces(location: location)
     }
 }
