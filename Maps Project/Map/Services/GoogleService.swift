@@ -7,7 +7,6 @@
 
 
 import GoogleMaps
-import GooglePlaces
 
 class GoogleService {
     
@@ -23,6 +22,5 @@ class GoogleService {
     // MARK: - Internal -
     func startServices() {
         GMSServices.provideAPIKey(GoogleService.apiKey)
-        GMSPlacesClient.provideAPIKey(GoogleService.apiKey)
     }
 }

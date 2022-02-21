@@ -20,7 +20,7 @@ class PlacesService {
     func fetchNearbyPlaces(location: CLLocation, completion: @escaping (_ places: PlacesResponse?) -> ()) {
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.coordinate.latitude),\(location.coordinate.longitude)&radius=5000&type=restaurant&key=\(GoogleService.apiKey)"
         guard let url = URL(string: urlString) else { return }
-        NetworkService.shared.getData(url: url, expacting: PlaceModel.self) { result in
+        NetworkService.shared.getData(url: url) { result in
             switch result {
             case .success(let data):
                 let places: PlacesResponse? = Data.parseJson(data, expacting: PlacesResponse.self)
@@ -28,18 +28,6 @@ class PlacesService {
             case .failure(let error):
                 print(error)
             }
-        }
-    }
-}
-
-extension Data {
-    static func parseJson<T: Codable>(_ data: Data, expacting: T.Type) -> T? {
-        let decoder = JSONDecoder()
-        do {
-            let decodateData = try decoder.decode(expacting, from: data)
-            return decodateData
-        } catch {
-            return nil
         }
     }
 }

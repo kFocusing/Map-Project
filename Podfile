@@ -13,6 +13,6 @@ target 'Maps Project' do
 
   # Pods for Maps Project
   pod 'GoogleMaps'
-  pod 'GooglePlaces'
+  pod 'Kingfisher'
 
 end

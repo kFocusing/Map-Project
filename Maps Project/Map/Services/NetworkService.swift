@@ -14,7 +14,7 @@ class NetworkService {
     private init() {}
     
     //MARK: - Internal -
-    func getData<T: Codable>(url: URL, expacting: T.Type, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
         let session = URLSession.shared
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {

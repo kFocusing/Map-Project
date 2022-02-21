@@ -70,13 +70,11 @@ class MapViewController: UIViewController {
         for place in places {
             guard let lat = place.geometry?.location?.lat,
                   let lng = place.geometry?.location?.lng else { return }
-            let cordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-            
-            
+
             let name = place.name ?? ""
             let vicinity = place.vicinity ?? ""
             let description = (placeName: name, placeAddress: vicinity)
-            
+            let cordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             setMarkerToLocation(cordinate: cordinate, description: description)
         }
     }
@@ -96,7 +94,6 @@ class MapViewController: UIViewController {
 //MARK: - LocationManagerDelegate -
 extension MapViewController: LocationManagerDelegate {
     func didUpdateLocation(location: CLLocation) {
-            mapView.clear()
             setCameraToLocation(location: location)
             getAroundPlaces(location: location)
     }
