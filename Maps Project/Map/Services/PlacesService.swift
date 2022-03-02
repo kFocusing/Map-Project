@@ -17,6 +17,7 @@ class PlacesService {
     
     private init() {}
     
+    //MARK: - Internal -
     func fetchNearbyPlaces(location: CLLocation, completion: @escaping (_ places: PlacesResponse?) -> ()) {
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.coordinate.latitude),\(location.coordinate.longitude)&radius=5000&type=restaurant&key=\(GoogleService.apiKey)"
         guard let url = URL(string: urlString) else { return }

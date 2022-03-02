@@ -7,18 +7,6 @@
 
 import UIKit
 
-class BaseTableViewCell: UITableViewCell, CellRegistable {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-//        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 class PlaceViewCell: BaseTableViewCell {
     
     //MARK: - Variables -
@@ -32,9 +20,8 @@ class PlaceViewCell: BaseTableViewCell {
     }()
     private lazy var placeImageIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .center
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
         self.containerView.addSubview(imageView)
         return imageView
     }()
@@ -63,7 +50,10 @@ class PlaceViewCell: BaseTableViewCell {
     }()
     
     private var place: PlaceModel?
-    
+    private let horizontalSpacing: CGFloat = 10
+    private let verticalSpacing: CGFloat = 10
+
+    //MARK: - Life Cycle -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUIElements()
@@ -81,7 +71,6 @@ class PlaceViewCell: BaseTableViewCell {
         setNameLabel()
         setRatingLabel()
         setVicinityLabel()
-//        setupUIElements()
     }
     
     //MARK: - Private -
@@ -106,35 +95,31 @@ class PlaceViewCell: BaseTableViewCell {
     }
     
     private func layoutImageView() {
-        setPlaceImageIcon()
         self.containerView.addSubview(placeImageIcon)
         let imageSize = CGSize(width: 110,
                                height: 110)
         NSLayoutConstraint.activate([
             placeImageIcon.widthAnchor.constraint(equalToConstant: imageSize.width),
             placeImageIcon.heightAnchor.constraint(equalToConstant: imageSize.height),
-            placeImageIcon.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                constant: 20),
+            placeImageIcon.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             placeImageIcon.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                                    constant: 20)
+                                                    constant: 2 * horizontalSpacing)
         ])
     }
     
     private func setNameLabel() {
-        guard let place = place else { return }
-        placeNameLabel.text = place.name ?? "Unknown place"
+        placeNameLabel.text = place?.name ?? "Unknown place"
     }
     
     private func layoutPlaceNameLabel() {
-        setNameLabel()
         self.containerView.addSubview(placeNameLabel)
         NSLayoutConstraint.activate([
             placeNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                constant: 20),
+                                                constant: 2 * verticalSpacing),
             placeNameLabel.leadingAnchor.constraint(equalTo: placeImageIcon.trailingAnchor,
-                                                    constant: 10),
+                                                    constant: horizontalSpacing),
             placeNameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                                     constant: -10)
+                                                     constant: -horizontalSpacing)
         ])
     }
     
@@ -143,30 +128,25 @@ class PlaceViewCell: BaseTableViewCell {
     }
     
     private func layoutPlaceVicinityLabel() {
-        setVicinityLabel()
         self.containerView.addSubview(placeVicinityLabel)
         NSLayoutConstraint.activate([
             placeVicinityLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor,
-                                                    constant: 10),
+                                                    constant: verticalSpacing),
             placeVicinityLabel.leadingAnchor.constraint(equalTo: placeImageIcon.trailingAnchor,
-                                                        constant: 10),
+                                                        constant: horizontalSpacing),
             placeVicinityLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                                         constant: -10)
+                                                         constant: -horizontalSpacing)
         ])
     }
     
     private func setRatingLabel() {
-        guard let place = place else { return }
-        guard let rating = place.rating else { return }
+        guard let rating = place?.rating else { return }
         placeRatingLabel.text = String(rating)
     }
     
     private func layoutPlaceRatingLabel() {
-        setRatingLabel()
         self.containerView.addSubview(placeRatingLabel)
-        let horizontalSpacing: CGFloat = 10
-        let verticalSpacing: CGFloat = 10
-
+        
         NSLayoutConstraint.activate([
             placeRatingLabel.topAnchor.constraint(equalTo: placeVicinityLabel.bottomAnchor,
                                                   constant: verticalSpacing),
