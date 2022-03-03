@@ -9,9 +9,9 @@ import UIKit
 import Kingfisher
 
 extension UIImageView {
-    func setImage(withURL: String?) {
-        guard let withURL = withURL,
-              let url = URL(string: withURL) else {
+    func setImage(with url: String?) {
+        guard let stringUrl = url,
+              let url = URL(string: stringUrl) else {
                   self.image = UIImage(named: "error404")
                   return
               }

@@ -10,15 +10,24 @@ import UIKit
 
 //MARK: - Shadow -
 extension UIView {
-    func dropShadow() {
+    func addDropShadow(shadowOpacity: Float,
+                    shadowRadius: CGFloat,
+                    shadowOffsetWidth: Int,
+                    shadowOffsetHeight: Int,
+                    shadowColor: CGColor) {
         layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: -1, height: 1)
-        layer.shadowRadius = 1
+        layer.shadowColor = shadowColor
+        layer.shadowOpacity = shadowOpacity
+        layer.shadowRadius = shadowRadius
+        layer.shadowOffset = CGSize(width: shadowOffsetWidth,
+                                    height: shadowOffsetHeight)
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    func makeCircle() {
+        layer.cornerRadius = frame.width / 2 
     }
 }
 

@@ -42,14 +42,9 @@ class MapViewController: UIViewController {
         layoutPlaceListButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.bringSubviewToFront(placeListButton)
+        view.addSubview(placeListButton)
     }
     
     @objc private func placeListButtonPressed() {
@@ -139,11 +134,11 @@ class MapViewController: UIViewController {
             placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
             placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11)
         ])
-        placeListButton.layer.cornerRadius = placeListButton.frame.width / 2 + 3
+        placeListButton.makeCircle()
     }
     
     private func navigateToPlaceList() {
-        let placeListViewController: PlaceListViewController = UIViewController.viewController(from: .placeList)
+        let placeListViewController: PlaceListViewController = .viewController(from: .placeList)
         placeListViewController.places = places
         self.navigationController?.pushViewController(placeListViewController,
                                                       animated: true)

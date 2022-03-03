@@ -14,7 +14,11 @@ class PlaceViewCell: BaseTableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        view.dropShadow()
+        view.addDropShadow(shadowOpacity: 0.5,
+                           shadowRadius: 1,
+                           shadowOffsetWidth: -1,
+                           shadowOffsetHeight: 1,
+                           shadowColor: UIColor.black.cgColor)
         contentView.addSubview(view)
         return view
     }()
@@ -29,31 +33,27 @@ class PlaceViewCell: BaseTableViewCell {
         let placeNameLabel = UILabel()
         placeNameLabel.numberOfLines = 0
         placeNameLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 17.0)
-        placeNameLabel.text = "Unknown place"
         placeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return placeNameLabel
     }()
     private var placeVicinityLabel: UILabel = {
         let placeVicinityLabel = UILabel()
         placeVicinityLabel.numberOfLines = 0
-        placeVicinityLabel.text = "Location vicinity missing"
         placeVicinityLabel.translatesAutoresizingMaskIntoConstraints = false
         return placeVicinityLabel
     }()
     private var placeRatingLabel: UILabel = {
         let placeRatingLabel = UILabel()
-        placeRatingLabel.numberOfLines = 1
         placeRatingLabel.textColor = .orange
-        placeRatingLabel.text = ""
         placeRatingLabel.translatesAutoresizingMaskIntoConstraints = false
         return placeRatingLabel
     }()
     
-    private var place: PlaceModel?
+//    var place: PlaceModel?
     private let horizontalSpacing: CGFloat = 10
     private let verticalSpacing: CGFloat = 10
-
-    //MARK: - Life Cycle -
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUIElements()
@@ -66,11 +66,10 @@ class PlaceViewCell: BaseTableViewCell {
     
     //MARK: - Internal -
     func configure(with place: PlaceModel) {
-        self.place = place
-        setPlaceImageIcon()
-        setNameLabel()
-        setRatingLabel()
-        setVicinityLabel()
+        setPlaceImageIcon(icon: place.icon)
+        setNameLabel(name: place.name)
+        setRatingLabel(rating: place.rating)
+        setVicinityLabel(vicinity: place.vicinity)
     }
     
     //MARK: - Private -
@@ -82,12 +81,8 @@ class PlaceViewCell: BaseTableViewCell {
         layoutPlaceRatingLabel()
     }
     
-    private func setPlaceImageIcon() {
-        guard let place = place else {
-            placeImageIcon.setImage(withURL: nil)
-            return
-        }
-        placeImageIcon.setImage(withURL: place.icon)
+    private func setPlaceImageIcon(icon: String?) {
+        placeImageIcon.setImage(with: icon)
     }
     
     private func layoutContainer() {
@@ -103,19 +98,19 @@ class PlaceViewCell: BaseTableViewCell {
             placeImageIcon.heightAnchor.constraint(equalToConstant: imageSize.height),
             placeImageIcon.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             placeImageIcon.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                                    constant: 2 * horizontalSpacing)
+                                                    constant: horizontalSpacing)
         ])
     }
     
-    private func setNameLabel() {
-        placeNameLabel.text = place?.name ?? "Unknown place"
+    private func setNameLabel(name: String?) {
+        placeNameLabel.text = name ?? "Unknown place"
     }
     
     private func layoutPlaceNameLabel() {
         self.containerView.addSubview(placeNameLabel)
         NSLayoutConstraint.activate([
             placeNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                constant: 2 * verticalSpacing),
+                                                constant: verticalSpacing),
             placeNameLabel.leadingAnchor.constraint(equalTo: placeImageIcon.trailingAnchor,
                                                     constant: horizontalSpacing),
             placeNameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
@@ -123,8 +118,8 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setVicinityLabel() {
-        placeVicinityLabel.text = place?.vicinity ?? "Location vicinity missing"
+    private func setVicinityLabel(vicinity: String?) {
+        placeVicinityLabel.text = vicinity ?? "Location vicinity missing"
     }
     
     private func layoutPlaceVicinityLabel() {
@@ -139,9 +134,8 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setRatingLabel() {
-        guard let rating = place?.rating else { return }
-        placeRatingLabel.text = String(rating)
+    private func setRatingLabel(rating: String?) {
+        placeRatingLabel.text = rating ?? "???"
     }
     
     private func layoutPlaceRatingLabel() {
@@ -155,7 +149,7 @@ class PlaceViewCell: BaseTableViewCell {
             placeRatingLabel.leadingAnchor.constraint(equalTo: placeImageIcon.trailingAnchor,
                                                       constant: horizontalSpacing),
             placeRatingLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
-                                                   constant: -verticalSpacing)
+                                                     constant: -verticalSpacing)
         ])
     }
     

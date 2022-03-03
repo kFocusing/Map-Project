@@ -25,8 +25,7 @@ class PlaceListViewController: UIViewController {
     //MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "List around places"
-        
+        setupNavigationBar()
         setupTableView()
     }
     
@@ -38,6 +37,10 @@ class PlaceListViewController: UIViewController {
    
     private func layoutTableView() {
         tableView.pinEdges(to: self.view)
+    }
+    
+    private func setupNavigationBar() {
+        title = "List around places"
     }
 }
 

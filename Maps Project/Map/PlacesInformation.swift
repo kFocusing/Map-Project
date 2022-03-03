@@ -21,7 +21,7 @@ struct PlaceModel: Codable {
     let name: String?
     let placeID: String?
     let priceLevel: Int?
-    let rating: Double?
+    let rating: String?
     let vicinity: String?
 
     enum CodingKeys: String, CodingKey {
