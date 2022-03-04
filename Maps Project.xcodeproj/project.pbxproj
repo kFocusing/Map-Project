@@ -11,7 +11,6 @@
 		C71D417D27BF979F00FD3E1E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D417C27BF979F00FD3E1E /* NetworkService.swift */; };
 		C71D544627BFEEA900E514BB /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D544527BFEEA900E514BB /* PlacesService.swift */; };
 		C7248E0627C3D9B600258918 /* PlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7248E0527C3D9B600258918 /* PlacesListViewController.swift */; };
-		C7248E0827C3D9CE00258918 /* PlaceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7248E0727C3D9CE00258918 /* PlaceViewCell.swift */; };
 		C7613BB027CE69A9003872A5 /* CellDequeueReusable&Registable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7613BAF27CE69A8003872A5 /* CellDequeueReusable&Registable.swift */; };
 		C7613BB427CE6A97003872A5 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7613BB327CE6A97003872A5 /* BaseTableViewCell.swift */; };
 		C775D79027BBE1DB00EF6568 /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775D78F27BBE1DB00EF6568 /* GoogleService.swift */; };
@@ -40,7 +39,6 @@
 		C71D417C27BF979F00FD3E1E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C71D544527BFEEA900E514BB /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
 		C7248E0527C3D9B600258918 /* PlacesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewController.swift; sourceTree = "<group>"; };
-		C7248E0727C3D9CE00258918 /* PlaceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewCell.swift; sourceTree = "<group>"; };
 		C7613BAF27CE69A8003872A5 /* CellDequeueReusable&Registable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellDequeueReusable&Registable.swift"; sourceTree = "<group>"; };
 		C7613BB327CE6A97003872A5 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		C775D78F27BBE1DB00EF6568 /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
@@ -127,7 +125,7 @@
 		C79BFD5627C4F78100B3876E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				C7248E0727C3D9CE00258918 /* PlaceViewCell.swift */,
+				C7EF259427D10C11000946CE /* PlaceXibTableViewCell.swift */,
 				C7613BB327CE6A97003872A5 /* BaseTableViewCell.swift */,
 			);
 			path = CustomViews;
@@ -139,18 +137,10 @@
 				C7F01EE227BBAC6300DC9EE4 /* LaunchScreen.storyboard */,
 				C7F01EDD27BBAC6300DC9EE4 /* Map.storyboard */,
 				C79BFD5427C4F58E00B3876E /* PlaceList.storyboard */,
+				C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */,
 				C79BFD5A27C505C900B3876E /* Storyboard Enum.swift */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		C7EF259327D10461000946CE /* XIB */ = {
-			isa = PBXGroup;
-			children = (
-				C7EF259427D10C11000946CE /* PlaceXibTableViewCell.swift */,
-				C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */,
-			);
-			path = XIB;
 			sourceTree = "<group>";
 		};
 		C7F01ECB27BBAC6300DC9EE4 = {
@@ -206,7 +196,6 @@
 		C7F01EF127BBAD2D00DC9EE4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C7EF259327D10461000946CE /* XIB */,
 				C79BFD5727C4F79100B3876E /* Storyboards */,
 				C79BFD5627C4F78100B3876E /* CustomViews */,
 			);
@@ -390,7 +379,6 @@
 				C71D417D27BF979F00FD3E1E /* NetworkService.swift in Sources */,
 				C7248E0627C3D9B600258918 /* PlacesListViewController.swift in Sources */,
 				C71D544627BFEEA900E514BB /* PlacesService.swift in Sources */,
-				C7248E0827C3D9CE00258918 /* PlaceViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

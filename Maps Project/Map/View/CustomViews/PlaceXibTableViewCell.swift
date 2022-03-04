@@ -9,12 +9,13 @@ import UIKit
 
 class PlaceXibTableViewCell: BaseTableViewCell {
     
-    
+    //MARK: - IBOutlet -
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var vicinityLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet private weak var iconImage: UIImageView!
+    @IBOutlet private weak var vicinityLabel: UILabel!
+    @IBOutlet private weak var ratingLabel: UILabel!
     
+    //MARK: - Life Cycle-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
