@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 15.02.2022.
@@ -23,8 +23,7 @@ class MapViewController: UIViewController {
         placeListButton.backgroundColor = .white
         placeListButton.addDropShadow(shadowOpacity: 0.4,
                                       shadowRadius: 2,
-                                      shadowOffsetWidth: 1,
-                                      shadowOffsetHeight: 1,
+                                      shadowOffset: CGSize(width: 0.5, height: 1),
                                       shadowColor: UIColor.black.cgColor)
         placeListButton.setImage(UIImage(systemName: "doc.plaintext"), for: .normal)
         placeListButton.tintColor = .darkGray
@@ -40,19 +39,19 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         setupLocationManager()
         setupMapView()
+        addPlaceListButton()
         layoutPlaceListButton()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        view.addSubview(placeListButton)
-    }
-    
+    //MARK: - Private -
     @objc private func placeListButtonPressed() {
         navigateToPlaceList()
     }
     
-    //MARK: - Private -
+    private func addPlaceListButton() {
+        view.addSubview(placeListButton)
+    }
+    
     private func setupLocationManager() {
         LocationManager.shared.delegate = self
         LocationManager.shared.start()
@@ -81,13 +80,7 @@ class MapViewController: UIViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(mapView)
-        
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor) ,
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        mapView.pinEdges(to: view)
     }
     
     private func getAroundPlaces(location: CLLocation) {

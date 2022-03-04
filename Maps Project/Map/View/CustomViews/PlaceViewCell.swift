@@ -16,8 +16,7 @@ class PlaceViewCell: BaseTableViewCell {
         view.backgroundColor = .clear
         view.addDropShadow(shadowOpacity: 0.5,
                            shadowRadius: 1,
-                           shadowOffsetWidth: -1,
-                           shadowOffsetHeight: 1,
+                           shadowOffset: CGSize(width: -1, height: 1),
                            shadowColor: UIColor.black.cgColor)
         contentView.addSubview(view)
         return view

@@ -18,7 +18,7 @@
 		C79BC25227C3B54F0071A207 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79BC25127C3B54F0071A207 /* DataExtension.swift */; };
 		C79BFD5527C4F58E00B3876E /* PlaceList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C79BFD5427C4F58E00B3876E /* PlaceList.storyboard */; };
 		C79BFD5927C503A400B3876E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79BFD5827C503A400B3876E /* UIViewExtension.swift */; };
-		C79BFD5B27C505C900B3876E /* Storyboard Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79BFD5A27C505C900B3876E /* Storyboard Enum.swift */; };
+		C79BFD5B27C505C900B3876E /* StoryboardEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79BFD5A27C505C900B3876E /* StoryboardEnum.swift */; };
 		C79BFD5D27C505E400B3876E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79BFD5C27C505E400B3876E /* UIViewControllerExtension.swift */; };
 		C7AD62F727C3DB5C00A6365A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AD62F627C3DB5C00A6365A /* UIImageViewExtension.swift */; };
 		C7C6F77727BE40230076BD36 /* PlacesInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6F77627BE40230076BD36 /* PlacesInformation.swift */; };
@@ -45,7 +45,7 @@
 		C79BC25127C3B54F0071A207 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		C79BFD5427C4F58E00B3876E /* PlaceList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceList.storyboard; sourceTree = "<group>"; };
 		C79BFD5827C503A400B3876E /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		C79BFD5A27C505C900B3876E /* Storyboard Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard Enum.swift"; sourceTree = "<group>"; };
+		C79BFD5A27C505C900B3876E /* StoryboardEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardEnum.swift; sourceTree = "<group>"; };
 		C79BFD5C27C505E400B3876E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C7AD62F627C3DB5C00A6365A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		C7C6F77627BE40230076BD36 /* PlacesInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlacesInformation.swift; path = "Maps Project/Map/PlacesInformation.swift"; sourceTree = SOURCE_ROOT; };
@@ -135,7 +135,7 @@
 				C7F01EE227BBAC6300DC9EE4 /* LaunchScreen.storyboard */,
 				C7F01EDD27BBAC6300DC9EE4 /* Map.storyboard */,
 				C79BFD5427C4F58E00B3876E /* PlaceList.storyboard */,
-				C79BFD5A27C505C900B3876E /* Storyboard Enum.swift */,
+				C79BFD5A27C505C900B3876E /* StoryboardEnum.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -369,7 +369,7 @@
 				C7F01ED827BBAC6300DC9EE4 /* AppDelegate.swift in Sources */,
 				C7F01EDA27BBAC6300DC9EE4 /* SceneDelegate.swift in Sources */,
 				C79BFD5927C503A400B3876E /* UIViewExtension.swift in Sources */,
-				C79BFD5B27C505C900B3876E /* Storyboard Enum.swift in Sources */,
+				C79BFD5B27C505C900B3876E /* StoryboardEnum.swift in Sources */,
 				C79BC25227C3B54F0071A207 /* DataExtension.swift in Sources */,
 				C71D417D27BF979F00FD3E1E /* NetworkService.swift in Sources */,
 				C7248E0627C3D9B600258918 /* PlacesListViewController.swift in Sources */,

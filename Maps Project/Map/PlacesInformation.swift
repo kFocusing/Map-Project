@@ -1,5 +1,5 @@
 //
-//  LocationInformation.swift
+//  PlacesInformation.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 17.02.2022.

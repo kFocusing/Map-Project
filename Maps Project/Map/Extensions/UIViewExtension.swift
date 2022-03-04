@@ -1,5 +1,5 @@
 //
-//  UIView Extension.swift
+//  UIViewExtension.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 22.02.2022.
@@ -11,23 +11,21 @@ import UIKit
 //MARK: - Shadow -
 extension UIView {
     func addDropShadow(shadowOpacity: Float,
-                    shadowRadius: CGFloat,
-                    shadowOffsetWidth: Int,
-                    shadowOffsetHeight: Int,
-                    shadowColor: CGColor) {
+                       shadowRadius: CGFloat,
+                       shadowOffset: CGSize,
+                       shadowColor: CGColor) {
         layer.masksToBounds = false
         layer.shadowColor = shadowColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
-        layer.shadowOffset = CGSize(width: shadowOffsetWidth,
-                                    height: shadowOffsetHeight)
+        layer.shadowOffset = shadowOffset
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }
     
     func makeCircle() {
-        layer.cornerRadius = frame.width / 2 
+        layer.cornerRadius = frame.width / 2
     }
 }
 
