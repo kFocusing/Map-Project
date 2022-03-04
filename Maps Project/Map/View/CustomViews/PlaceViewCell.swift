@@ -134,8 +134,10 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setRatingLabel(rating: String?) {
-        placeRatingLabel.text = rating ?? "???"
+    private func setRatingLabel(rating: Double?) {
+        guard let rating = rating else { return }
+        placeRatingLabel.text = String(rating)
+        
     }
     
     private func layoutPlaceRatingLabel() {
@@ -152,5 +154,4 @@ class PlaceViewCell: BaseTableViewCell {
                                                      constant: -verticalSpacing)
         ])
     }
-    
 }

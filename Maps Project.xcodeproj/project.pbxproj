@@ -23,6 +23,8 @@
 		C7AD62F727C3DB5C00A6365A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AD62F627C3DB5C00A6365A /* UIImageViewExtension.swift */; };
 		C7C6F77727BE40230076BD36 /* PlacesInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6F77627BE40230076BD36 /* PlacesInformation.swift */; };
 		C7C6F77927BE402F0076BD36 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6F77827BE402F0076BD36 /* LocationManager.swift */; };
+		C7EF259627D10C11000946CE /* PlaceXibTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF259427D10C11000946CE /* PlaceXibTableViewCell.swift */; };
+		C7EF259727D10C11000946CE /* PlaceXibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */; };
 		C7F01ED827BBAC6300DC9EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F01ED727BBAC6300DC9EE4 /* AppDelegate.swift */; };
 		C7F01EDA27BBAC6300DC9EE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F01ED927BBAC6300DC9EE4 /* SceneDelegate.swift */; };
 		C7F01EDC27BBAC6300DC9EE4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F01EDB27BBAC6300DC9EE4 /* MapViewController.swift */; };
@@ -50,6 +52,8 @@
 		C7AD62F627C3DB5C00A6365A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		C7C6F77627BE40230076BD36 /* PlacesInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlacesInformation.swift; path = "Maps Project/Map/PlacesInformation.swift"; sourceTree = SOURCE_ROOT; };
 		C7C6F77827BE402F0076BD36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C7EF259427D10C11000946CE /* PlaceXibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceXibTableViewCell.swift; sourceTree = "<group>"; };
+		C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceXibTableViewCell.xib; sourceTree = "<group>"; };
 		C7F01ED427BBAC6300DC9EE4 /* Maps Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Maps Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F01ED727BBAC6300DC9EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7F01ED927BBAC6300DC9EE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,15 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		C7EF259327D10461000946CE /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				C7EF259427D10C11000946CE /* PlaceXibTableViewCell.swift */,
+				C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */,
+			);
+			path = XIB;
+			sourceTree = "<group>";
+		};
 		C7F01ECB27BBAC6300DC9EE4 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +206,7 @@
 		C7F01EF127BBAD2D00DC9EE4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7EF259327D10461000946CE /* XIB */,
 				C79BFD5727C4F79100B3876E /* Storyboards */,
 				C79BFD5627C4F78100B3876E /* CustomViews */,
 			);
@@ -288,6 +302,7 @@
 				C79BFD5527C4F58E00B3876E /* PlaceList.storyboard in Resources */,
 				C7F01EE427BBAC6300DC9EE4 /* LaunchScreen.storyboard in Resources */,
 				C7F01EE127BBAC6300DC9EE4 /* Assets.xcassets in Resources */,
+				C7EF259727D10C11000946CE /* PlaceXibTableViewCell.xib in Resources */,
 				C7F01EDF27BBAC6300DC9EE4 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +376,7 @@
 				C775D79027BBE1DB00EF6568 /* GoogleService.swift in Sources */,
 				C7C6F77727BE40230076BD36 /* PlacesInformation.swift in Sources */,
 				C7C6F77927BE402F0076BD36 /* LocationManager.swift in Sources */,
+				C7EF259627D10C11000946CE /* PlaceXibTableViewCell.swift in Sources */,
 				C7613BB427CE6A97003872A5 /* BaseTableViewCell.swift in Sources */,
 				C7F01EDC27BBAC6300DC9EE4 /* MapViewController.swift in Sources */,
 				C79BFD5D27C505E400B3876E /* UIViewControllerExtension.swift in Sources */,
