@@ -1,6 +1,6 @@
 //
 //  NetworkService.swift
-//  NatifeTest
+//  Maps Project
 //
 //  Created by Danylo Klymov on 29.01.2022.
 //

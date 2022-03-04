@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 15.02.2022.
@@ -15,15 +15,43 @@ class MapViewController: UIViewController {
     private let defaultCameraZoom: Float = 16
     private var mapView: GMSMapView!
     private var places = [PlaceModel]()
+    private lazy var placeListButton: UIButton = {
+        let placeListButton = UIButton(frame: CGRect(x: 0,
+                                                     y: 0,
+                                                     width: 50,
+                                                     height: 50))
+        placeListButton.backgroundColor = .white
+        placeListButton.addDropShadow(shadowOpacity: 0.4,
+                                      shadowRadius: 2,
+                                      shadowOffset: CGSize(width: 0.5, height: 1),
+                                      shadowColor: UIColor.black.cgColor)
+        placeListButton.setImage(UIImage(systemName: "doc.plaintext"), for: .normal)
+        placeListButton.tintColor = .darkGray
+        placeListButton.translatesAutoresizingMaskIntoConstraints = false
+        placeListButton.addTarget(self, action:
+                                    #selector(placeListButtonPressed),
+                                  for: .touchUpInside)
+        return placeListButton
+    }()
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationManager()
         setupMapView()
+        addPlaceListButton()
+        layoutPlaceListButton()
     }
     
     //MARK: - Private -
+    @objc private func placeListButtonPressed() {
+        navigateToPlaceList()
+    }
+    
+    private func addPlaceListButton() {
+        view.addSubview(placeListButton)
+    }
+    
     private func setupLocationManager() {
         LocationManager.shared.delegate = self
         LocationManager.shared.start()
@@ -49,7 +77,10 @@ class MapViewController: UIViewController {
         mapView.settings.tiltGestures = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isIndoorEnabled = false
-        self.view = mapView
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(mapView)
+        mapView.pinEdges(to: view)
     }
     
     private func getAroundPlaces(location: CLLocation) {
@@ -88,6 +119,24 @@ class MapViewController: UIViewController {
         marker.position = cordinate
         marker.map = mapView
     }
+    
+    private func layoutPlaceListButton() {
+        view.addSubview(placeListButton)
+        NSLayoutConstraint.activate([
+            placeListButton.heightAnchor.constraint(equalToConstant: 55),
+            placeListButton.widthAnchor.constraint(equalToConstant: 55),
+            placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
+            placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11)
+        ])
+        placeListButton.makeCircle()
+    }
+    
+    private func navigateToPlaceList() {
+        let placeListViewController: PlaceListViewController = .viewController(from: .placeList)
+        placeListViewController.places = places
+        self.navigationController?.pushViewController(placeListViewController,
+                                                      animated: true)
+    }
 }
 
 //MARK: - Extensions -
@@ -98,3 +147,4 @@ extension MapViewController: LocationManagerDelegate {
         getAroundPlaces(location: location)
     }
 }
+
