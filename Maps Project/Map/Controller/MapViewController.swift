@@ -21,10 +21,11 @@ class MapViewController: UIViewController {
                                                      width: 50,
                                                      height: 50))
         placeListButton.backgroundColor = .white
-        placeListButton.layer.shadowRadius = 2.0
-        placeListButton.layer.shadowOpacity = 0.4
-        placeListButton.layer.shadowOffset = CGSize(width: 0.5,
-                                                    height: 1)
+        placeListButton.addDropShadow(shadowOpacity: 0.4,
+                                      shadowRadius: 2,
+                                      shadowOffsetWidth: 1,
+                                      shadowOffsetHeight: 1,
+                                      shadowColor: UIColor.black.cgColor)
         placeListButton.setImage(UIImage(systemName: "doc.plaintext"), for: .normal)
         placeListButton.tintColor = .darkGray
         placeListButton.translatesAutoresizingMaskIntoConstraints = false
