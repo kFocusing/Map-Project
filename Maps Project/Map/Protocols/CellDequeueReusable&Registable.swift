@@ -15,7 +15,11 @@ extension CellRegistable {
     static func register(in tableView: UITableView) {
         tableView.register(Self.self, forCellReuseIdentifier: String(describing: self))
     }
-    // TODO: - Implment similar method for XIB -
+    
+    static func registerXIB(in tableView: UITableView) {
+        tableView.register(UINib(nibName: String(describing: self), bundle: nil),
+                           forCellReuseIdentifier: String(describing: self))
+    }
 }
 
 extension CellDequeueReusable {

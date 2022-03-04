@@ -49,11 +49,10 @@ class PlaceViewCell: BaseTableViewCell {
         return placeRatingLabel
     }()
     
-//    var place: PlaceModel?
     private let horizontalSpacing: CGFloat = 10
     private let verticalSpacing: CGFloat = 10
     
-    
+    //MARK: - Life Cycle -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUIElements()
@@ -68,7 +67,7 @@ class PlaceViewCell: BaseTableViewCell {
     func configure(with place: PlaceModel) {
         setPlaceImageIcon(icon: place.icon)
         setNameLabel(name: place.name)
-        setRatingLabel(rating: place.rating)
+        setRatingLabel(rating: place.rating ?? 0)
         setVicinityLabel(vicinity: place.vicinity)
     }
     
@@ -134,8 +133,8 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setRatingLabel(rating: String?) {
-        placeRatingLabel.text = rating ?? "???"
+    private func setRatingLabel(rating: Double) {
+        placeRatingLabel.text = String(rating)
     }
     
     private func layoutPlaceRatingLabel() {
