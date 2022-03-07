@@ -16,7 +16,7 @@ class PlaceViewCell: BaseTableViewCell {
         view.backgroundColor = .clear
         view.addDropShadow(shadowOpacity: 0.5,
                            shadowRadius: 1,
-                           shadowOffset: CGSize(width: -1, height: 1),
+                           shadowOffset: CGSize(width: 0, height: 1),
                            shadowColor: UIColor.black.cgColor)
         contentView.addSubview(view)
         return view
@@ -45,6 +45,7 @@ class PlaceViewCell: BaseTableViewCell {
         let placeRatingLabel = UILabel()
         placeRatingLabel.textColor = .orange
         placeRatingLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeRatingLabel.text = ""
         return placeRatingLabel
     }()
     
@@ -64,10 +65,10 @@ class PlaceViewCell: BaseTableViewCell {
     
     //MARK: - Internal -
     func configure(with place: PlaceModel) {
-        setPlaceImageIcon(icon: place.icon)
-        setNameLabel(name: place.name)
-        setRatingLabel(rating: place.rating ?? 0)
-        setVicinityLabel(vicinity: place.vicinity)
+        setPlaceImageIcon(place: place)
+        setNameLabel(place: place)
+        setRatingLabel(place: place)
+        setVicinityLabel(place: place)
     }
     
     //MARK: - Private -
@@ -79,8 +80,8 @@ class PlaceViewCell: BaseTableViewCell {
         layoutPlaceRatingLabel()
     }
     
-    private func setPlaceImageIcon(icon: String?) {
-        placeImageIcon.setImage(with: icon)
+    private func setPlaceImageIcon(place: PlaceModel) {
+        placeImageIcon.setImage(with: place.iconURL)
     }
     
     private func layoutContainer() {
@@ -100,8 +101,8 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setNameLabel(name: String?) {
-        placeNameLabel.text = name ?? "Unknown place"
+    private func setNameLabel(place: PlaceModel) {
+        placeNameLabel.text = place.name ?? "Unknown place"
     }
     
     private func layoutPlaceNameLabel() {
@@ -116,8 +117,8 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setVicinityLabel(vicinity: String?) {
-        placeVicinityLabel.text = vicinity ?? "Location vicinity missing"
+    private func setVicinityLabel(place: PlaceModel) {
+        placeVicinityLabel.text = place.vicinity ?? "Location vicinity missing"
     }
     
     private func layoutPlaceVicinityLabel() {
@@ -132,8 +133,9 @@ class PlaceViewCell: BaseTableViewCell {
         ])
     }
     
-    private func setRatingLabel(rating: Double) {
-        placeRatingLabel.text = String(rating)
+    private func setRatingLabel(place: PlaceModel) {
+        guard let rating = place.rating else { return }
+        placeRatingLabel.text = rating.stringValue
     }
     
     private func layoutPlaceRatingLabel() {
@@ -150,5 +152,4 @@ class PlaceViewCell: BaseTableViewCell {
                                                      constant: -verticalSpacing)
         ])
     }
-    
 }

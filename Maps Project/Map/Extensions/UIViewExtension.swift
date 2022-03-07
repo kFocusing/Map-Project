@@ -12,17 +12,23 @@ extension UIView {
     func addDropShadow(shadowOpacity: Float,
                        shadowRadius: CGFloat,
                        shadowOffset: CGSize,
-                       shadowColor: CGColor) {
+                       shadowColor: CGColor,
+                       cornerRadius: CGFloat? = nil) {
         layer.masksToBounds = false
         layer.shadowColor = shadowColor
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
-//        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shadowOffset = shadowOffset
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
+                                        cornerRadius: cornerRadius ?? self.layer.cornerRadius).cgPath 
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
     func makeCircle() {
-        layer.cornerRadius = frame.width / 2
+        layer.masksToBounds = true
+        layer.cornerRadius = bounds.width / 2
     }
 }
 

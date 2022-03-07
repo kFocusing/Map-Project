@@ -18,14 +18,15 @@ class MapViewController: UIViewController {
     private lazy var placeListButton: UIButton = {
         let placeListButton = UIButton(frame: CGRect(x: 0,
                                                      y: 0,
-                                                     width: 50,
-                                                     height: 50))
+                                                     width: 55,
+                                                     height: 55))
         placeListButton.backgroundColor = .white
         placeListButton.makeCircle()
         placeListButton.addDropShadow(shadowOpacity: 0.4,
                                       shadowRadius: 2,
                                       shadowOffset: CGSize(width: 0, height: 2),
                                       shadowColor: UIColor.black.cgColor)
+        
         placeListButton.setImage(UIImage(systemName: "doc.plaintext"), for: .normal)
         placeListButton.tintColor = .darkGray
         placeListButton.translatesAutoresizingMaskIntoConstraints = false
@@ -122,10 +123,9 @@ class MapViewController: UIViewController {
     }
     
     private func layoutPlaceListButton() {
-        view.addSubview(placeListButton)
         NSLayoutConstraint.activate([
-            placeListButton.heightAnchor.constraint(equalToConstant: 55),
-            placeListButton.widthAnchor.constraint(equalToConstant: 55),
+            placeListButton.heightAnchor.constraint(equalToConstant: placeListButton.frame.size.height),
+            placeListButton.widthAnchor.constraint(equalToConstant: placeListButton.frame.size.width),
             placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
             placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11)
         ])

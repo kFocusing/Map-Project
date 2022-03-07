@@ -31,7 +31,7 @@ class PlaceListViewController: UIViewController {
     
     private func setupTableView() {
         layoutTableView()
-        PlaceViewCell.register(in: tableView)
+        PlaceXibTableViewCell.registerXIB(in: tableView)
         tableView.reloadData()
     }
    
@@ -53,7 +53,7 @@ extension PlaceListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = PlaceViewCell.dequeueCellWithType(in: tableView, indexPath: indexPath)
+        let cell = PlaceXibTableViewCell.dequeueCell(in: tableView, indexPath: indexPath)
         let place = places[indexPath.row]
         cell.configure(with: place)
         return cell
