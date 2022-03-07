@@ -21,7 +21,7 @@ extension UIView {
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset
         layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
-                                        cornerRadius: cornerRadius ?? self.layer.cornerRadius).cgPath // UIBezierPath(rect: self.bounds).cgPath
+                                        cornerRadius: cornerRadius ?? self.layer.cornerRadius).cgPath 
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }
@@ -29,7 +29,6 @@ extension UIView {
     func makeCircle() {
         layer.masksToBounds = true
         layer.cornerRadius = bounds.width / 2
-        
     }
 }
 

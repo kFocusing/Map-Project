@@ -25,7 +25,7 @@ class PlaceXibTableViewCell: BaseTableViewCell {
     
     //MARK: - Private -
     private func setIconImage(place: PlaceModel) {
-        iconImage.setImage(with: place.icon)
+        iconImage.setImage(with: place.iconURL)
     }
     
     private func setNameLabel(place: PlaceModel) {
@@ -37,7 +37,6 @@ class PlaceXibTableViewCell: BaseTableViewCell {
     }
     
     private func setRatingLabel(place: PlaceModel) {
-        guard let rating = place.rating else { return }
-        ratingLabel.text = String(rating)
+        ratingLabel.text = place.rating?.toString
     }
 }

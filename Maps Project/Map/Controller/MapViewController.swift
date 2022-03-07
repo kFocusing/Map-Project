@@ -129,7 +129,6 @@ class MapViewController: UIViewController {
             placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
             placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11)
         ])
-        
     }
     
     private func navigateToPlaceList() {
