@@ -8,7 +8,7 @@
 import Foundation
 
 extension Double {
-    var toString: String {
+    var stringValue: String {
         return String(self)
     }
 }

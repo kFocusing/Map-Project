@@ -13,7 +13,11 @@ class PlaceXibTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var iconImage: UIImageView!
     @IBOutlet private weak var vicinityLabel: UILabel!
-    @IBOutlet private weak var ratingLabel: UILabel!
+    @IBOutlet private weak var ratingLabel: UILabel! {
+        didSet {
+            ratingLabel.text = ""
+        }
+    }
     
     //MARK: - Internal -
     func configure(with place: PlaceModel) {
@@ -37,6 +41,7 @@ class PlaceXibTableViewCell: BaseTableViewCell {
     }
     
     private func setRatingLabel(place: PlaceModel) {
-        ratingLabel.text = place.rating?.toString
+        guard let rating = place.rating else { return }
+        ratingLabel.text = rating.stringValue
     }
 }

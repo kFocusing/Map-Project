@@ -45,7 +45,7 @@ class PlaceViewCell: BaseTableViewCell {
         let placeRatingLabel = UILabel()
         placeRatingLabel.textColor = .orange
         placeRatingLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeRatingLabel.text = "???"
+        placeRatingLabel.text = ""
         return placeRatingLabel
     }()
     
@@ -134,7 +134,8 @@ class PlaceViewCell: BaseTableViewCell {
     }
     
     private func setRatingLabel(place: PlaceModel) {
-        placeRatingLabel.text = place.rating?.toString
+        guard let rating = place.rating else { return }
+        placeRatingLabel.text = rating.stringValue
     }
     
     private func layoutPlaceRatingLabel() {
