@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Place List View Controller-->
+        <!--Place List Collection View Controller-->
         <scene sceneID="vkw-vr-l5u">
             <objects>
-                <viewController storyboardIdentifier="PlaceListViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B3a-9V-Bko" customClass="PlaceListViewController" customModule="Maps_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceListCollectionViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B3a-9V-Bko" customClass="PlaceListCollectionViewController" customModule="Maps_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fte-ZO-VSM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

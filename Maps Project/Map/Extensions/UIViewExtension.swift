@@ -5,7 +5,6 @@
 //  Created by Danylo Klymov on 22.02.2022.
 //
 
-import Foundation
 import UIKit
 
 //MARK: - Shadow -
@@ -16,12 +15,10 @@ extension UIView {
                        shadowColor: CGColor) {
         layer.masksToBounds = false
         layer.shadowColor = shadowColor
+        layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
-        layer.shadowOffset = shadowOffset
-        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale
+//        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
     }
     
     func makeCircle() {
