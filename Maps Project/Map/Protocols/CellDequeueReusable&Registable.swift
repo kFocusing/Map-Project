@@ -1,5 +1,5 @@
 //
-//  CellDequeueReusable.swift
+//  CellDequeueReusable&Registable.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 01.03.2022.

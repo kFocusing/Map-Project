@@ -1,5 +1,5 @@
 //
-//  UIImage Extension.swift
+//  UIImageViewExtension.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 21.02.2022.
