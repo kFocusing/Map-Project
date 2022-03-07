@@ -48,7 +48,7 @@
 		C79BFD5A27C505C900B3876E /* StoryboardEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardEnum.swift; sourceTree = "<group>"; };
 		C79BFD5C27C505E400B3876E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C7AD62F627C3DB5C00A6365A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
-		C7C6F77627BE40230076BD36 /* PlacesInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlacesInformation.swift; path = "Maps Project/Map/PlacesInformation.swift"; sourceTree = SOURCE_ROOT; };
+		C7C6F77627BE40230076BD36 /* PlacesInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlacesInformation.swift; path = "Maps Project/Map/Model/PlacesInformation.swift"; sourceTree = SOURCE_ROOT; };
 		C7C6F77827BE402F0076BD36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C7EF259427D10C11000946CE /* PlaceXibTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceXibTableViewCell.swift; sourceTree = "<group>"; };
 		C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceXibTableViewCell.xib; sourceTree = "<group>"; };
@@ -138,9 +138,17 @@
 				C7F01EDD27BBAC6300DC9EE4 /* Map.storyboard */,
 				C79BFD5427C4F58E00B3876E /* PlaceList.storyboard */,
 				C7EF259527D10C11000946CE /* PlaceXibTableViewCell.xib */,
-				C79BFD5A27C505C900B3876E /* Storyboard Enum.swift */,
+				C79BFD5A27C505C900B3876E /* StoryboardEnum.swift */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C7EDA89727D613B200DCFA79 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7C6F77627BE40230076BD36 /* PlacesInformation.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C7F01ECB27BBAC6300DC9EE4 = {
@@ -175,7 +183,7 @@
 			children = (
 				C7613BAE27CE6991003872A5 /* Protocols */,
 				C79BC25027C3B5320071A207 /* Extensions */,
-				C7F01EF227BBAD3000DC9EE4 /* Model */,
+				C7EDA89727D613B200DCFA79 /* Model */,
 				C7F01EF127BBAD2D00DC9EE4 /* View */,
 				C7F01EF027BBAD2400DC9EE4 /* Controller */,
 				C775D79127BBE65500EF6568 /* App&SceneDelegate */,
@@ -200,14 +208,6 @@
 				C79BFD5627C4F78100B3876E /* CustomViews */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C7F01EF227BBAD3000DC9EE4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C7C6F77627BE40230076BD36 /* PlacesInformation.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C7F01EF327BBAD4700DC9EE4 /* Supporting files */ = {
