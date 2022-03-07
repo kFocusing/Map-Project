@@ -124,8 +124,8 @@ class MapViewController: UIViewController {
     
     private func layoutPlaceListButton() {
         NSLayoutConstraint.activate([
-            placeListButton.heightAnchor.constraint(equalToConstant: 55),
-            placeListButton.widthAnchor.constraint(equalToConstant: 55),
+            placeListButton.heightAnchor.constraint(equalToConstant: placeListButton.frame.size.height),
+            placeListButton.widthAnchor.constraint(equalToConstant: placeListButton.frame.size.width),
             placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
             placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11)
         ])
