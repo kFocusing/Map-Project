@@ -16,7 +16,7 @@ struct PlacesResponse: Codable {
 // MARK: - someLocationRequest -
 struct PlaceModel: Codable {
     let geometry: Geometry?
-    let icon: String?
+    let iconURL: String?
     let iconBackgroundColor: String?
     let name: String?
     let placeID: String?
@@ -25,7 +25,8 @@ struct PlaceModel: Codable {
     let vicinity: String?
 
     enum CodingKeys: String, CodingKey {
-        case geometry, icon
+        case geometry
+        case iconURL = "icon"
         case iconBackgroundColor = "icon_background_color"
         case name
         case placeID = "place_id"
