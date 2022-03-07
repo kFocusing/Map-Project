@@ -15,41 +15,29 @@ class PlaceXibTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var vicinityLabel: UILabel!
     @IBOutlet private weak var ratingLabel: UILabel!
     
-    //MARK: - Life Cycle-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    
     //MARK: - Internal -
     func configure(with place: PlaceModel) {
-        setIconImage(icon: place.icon)
-        setNameLabel(name: place.name)
-        setRatingLabel(rating: place.rating)
-        setVicinityLabel(vicinity: place.vicinity)
+        setIconImage(place: place)
+        setNameLabel(place: place)
+        setRatingLabel(place: place)
+        setVicinityLabel(place: place)
     }
     
     //MARK: - Private -
-    private func setIconImage(icon: String?) {
-        iconImage.setImage(with: icon)
+    private func setIconImage(place: PlaceModel) {
+        iconImage.setImage(with: place.icon)
     }
     
-    private func setNameLabel(name: String?) {
-        nameLabel.text = name ?? "Unknown place"
+    private func setNameLabel(place: PlaceModel) {
+        nameLabel.text = place.name ?? "Unknown place"
     }
     
-    
-    private func setVicinityLabel(vicinity: String?) {
-        vicinityLabel.text = vicinity ?? "Location vicinity missing"
+    private func setVicinityLabel(place: PlaceModel) {
+        vicinityLabel.text = place.vicinity ?? "Location vicinity missing"
     }
     
-    private func setRatingLabel(rating: Double?) {
-        guard let rating = rating else { return }
+    private func setRatingLabel(place: PlaceModel) {
+        guard let rating = place.rating else { return }
         ratingLabel.text = String(rating)
-        
     }
 }

@@ -23,7 +23,7 @@ extension CellRegistable {
 }
 
 extension CellDequeueReusable {
-    static func dequeueCellWithType(in tableView: UITableView, indexPath: IndexPath) -> Self {
+    static func dequeueCell(in tableView: UITableView, indexPath: IndexPath) -> Self {
         return tableView.dequeueReusableCell(withIdentifier: String(describing: Self.self),
                                              for: indexPath) as! Self
     }
