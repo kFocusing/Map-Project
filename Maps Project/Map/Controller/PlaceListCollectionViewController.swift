@@ -28,7 +28,6 @@ class PlaceListCollectionViewController: UIViewController {
         let paddingWidth = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = self.view.frame.width - paddingWidth
         let widthPerItem = availableWidth / itemsPerRow
-        
         return widthPerItem
     }
     
@@ -45,19 +44,14 @@ class PlaceListCollectionViewController: UIViewController {
         collectionView .dataSource = self
         view.addSubview(collectionView)
         
-        layoutCollectionView()
+        collectionView.pinEdges(to: self.view)
         PlaceCollectionViewCell.register(in: collectionView)
         collectionView.reloadData()
-    }
-    
-    private func layoutCollectionView() {
-        collectionView.pinEdges(to: self.view)
     }
     
     private func setupNavigationBar() {
         title = "List around places"
     }
-    
 }
 
 // MARK: - Extensions -

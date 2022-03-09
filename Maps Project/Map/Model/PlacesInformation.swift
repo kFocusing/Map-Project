@@ -7,13 +7,13 @@
 
 import Foundation
 
-// MARK: - LocationRequest -
+// MARK: - PlacesResponse -
 struct PlacesResponse: Codable {
     let results: [PlaceModel]
     let status: String
 }
 
-// MARK: - someLocationRequest -
+// MARK: - PlaceModel -
 struct PlaceModel: Codable {
     let geometry: Geometry?
     let iconURL: String?

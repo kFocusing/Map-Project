@@ -50,6 +50,14 @@ extension UIView {
         view.setNeedsLayout()
     }
     
+//    func pinEdges(to superView: UIView,
+//                  leftInset: CGFloat? = nil,
+//                  rightInset: CGFloat? = nil,
+//                  bottomInset: CGFloat? = nil,
+//                  topInset: CGFloat? = nil) {
+//        
+//    }
+    
     func alignCentered(subview: UIView?,
                        xOffset: CGFloat = .zero,
                        yOffset: CGFloat = .zero) {

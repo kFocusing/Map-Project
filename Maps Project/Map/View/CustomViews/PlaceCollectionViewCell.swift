@@ -91,6 +91,7 @@ class PlaceCollectionViewCell: BaseDynamicHeightCollectionCell {
         self.containerView.addSubview(placeImageIcon)
         let imageSize = CGSize(width: 110,
                                height: 110)
+        
         NSLayoutConstraint.activate([
             placeImageIcon.widthAnchor.constraint(equalToConstant: imageSize.width),
             placeImageIcon.heightAnchor.constraint(equalToConstant: imageSize.height),
