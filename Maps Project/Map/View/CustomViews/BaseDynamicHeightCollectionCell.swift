@@ -7,7 +7,9 @@
 
 import UIKit
 
-class BaseDynamicHeightCollectionCell: UICollectionViewCell {
+class BaseDynamicHeightCollectionCell: UICollectionViewCell,
+                                       CollectionCellRegistable,
+                                       CollectionCellDequeueReusable {
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let targetSize = CGSize(width: layoutAttributes.frame.width,
                                 height: 0)

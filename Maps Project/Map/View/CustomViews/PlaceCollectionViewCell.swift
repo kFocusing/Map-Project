@@ -7,9 +7,7 @@
 
 import UIKit
 
-class PlaceCollectionViewCell: BaseDynamicHeightCollectionCell,
-                               CollectionCellRegistable,
-                               CollectionCellDequeueReusable {
+class PlaceCollectionViewCell: BaseDynamicHeightCollectionCell {
     
     //MARK: - Variables -
     private lazy var containerView: UIView = {
