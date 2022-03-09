@@ -5,7 +5,6 @@
 //  Created by Danylo Klymov on 22.02.2022.
 //
 
-import Foundation
 import UIKit
 
 //MARK: - Shadow -
@@ -17,6 +16,7 @@ extension UIView {
                        cornerRadius: CGFloat? = nil) {
         layer.masksToBounds = false
         layer.shadowColor = shadowColor
+        layer.shadowOffset = shadowOffset
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = shadowOffset

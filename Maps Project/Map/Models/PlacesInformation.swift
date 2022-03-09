@@ -7,16 +7,16 @@
 
 import Foundation
 
-// MARK: - PlacesResponse -
+// MARK: - LocationRequest -
 struct PlacesResponse: Codable {
     let results: [PlaceModel]
     let status: String
 }
 
-// MARK: - PlaceModel -
+// MARK: - someLocationRequest -
 struct PlaceModel: Codable {
     let geometry: Geometry?
-    let iconURL: String?
+    let icon: String?
     let iconBackgroundColor: String?
     let name: String?
     let placeID: String?
@@ -25,8 +25,7 @@ struct PlaceModel: Codable {
     let vicinity: String?
 
     enum CodingKeys: String, CodingKey {
-        case geometry
-        case iconURL = "icon"
+        case geometry, icon
         case iconBackgroundColor = "icon_background_color"
         case name
         case placeID = "place_id"

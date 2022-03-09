@@ -24,9 +24,8 @@ class MapViewController: UIViewController {
         placeListButton.makeCircle()
         placeListButton.addDropShadow(shadowOpacity: 0.4,
                                       shadowRadius: 2,
-                                      shadowOffset: CGSize(width: 0.5, height: 1),
+                                      shadowOffset: CGSize(width: 0, height: 2),
                                       shadowColor: UIColor.black.cgColor)
-        
         placeListButton.setImage(UIImage(systemName: "doc.plaintext"), for: .normal)
         placeListButton.tintColor = .darkGray
         placeListButton.translatesAutoresizingMaskIntoConstraints = false
@@ -132,10 +131,11 @@ class MapViewController: UIViewController {
     }
     
     private func navigateToPlaceList() {
-        let placeListViewController: PlaceListViewController = .viewController(from: .placeList)
-        placeListViewController.places = places
-        self.navigationController?.pushViewController(placeListViewController,
+        let placeListCollectionViewController: PlaceListCollectionViewController = .viewController(from: .placeList)
+        placeListCollectionViewController.places = places
+        self.navigationController?.pushViewController(placeListCollectionViewController,
                                                       animated: true)
+        
     }
 }
 
