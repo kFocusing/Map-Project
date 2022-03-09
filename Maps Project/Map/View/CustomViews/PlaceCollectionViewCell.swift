@@ -8,8 +8,8 @@
 import UIKit
 
 class PlaceCollectionViewCell: UICollectionViewCell,
-                                CollectionCellRegistable,
-                                CollectionCellDequeueReusable {
+                               CollectionCellRegistable,
+                               CollectionCellDequeueReusable {
     
     //MARK: - Variables -
     private lazy var containerView: UIView = {
@@ -66,10 +66,16 @@ class PlaceCollectionViewCell: UICollectionViewCell,
     
     //MARK: - Internal -
     func configure(with place: PlaceModel) {
-        setPlaceImageIcon(icon: place.icon)
-        setNameLabel(name: place.name)
-        setRatingLabel(rating: place.rating ?? 0)
-        setVicinityLabel(vicinity: place.vicinity)
+        setPlaceImageIcon(place: place)
+        setNameLabel(place: place)
+        setRatingLabel(place: place)
+        setVicinityLabel(place: place)
+    }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
+        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        return layoutAttributes
     }
     
     //MARK: - Private -
@@ -81,8 +87,8 @@ class PlaceCollectionViewCell: UICollectionViewCell,
         layoutPlaceRatingLabel()
     }
     
-    private func setPlaceImageIcon(icon: String?) {
-        placeImageIcon.setImage(with: icon)
+    private func setPlaceImageIcon(place: PlaceModel) {
+        placeImageIcon.setImage(with: place.iconURL)
     }
     
     private func layoutContainer() {
@@ -102,8 +108,8 @@ class PlaceCollectionViewCell: UICollectionViewCell,
         ])
     }
     
-    private func setNameLabel(name: String?) {
-        placeNameLabel.text = name ?? "Unknown place"
+    private func setNameLabel(place: PlaceModel) {
+        placeNameLabel.text = place.name ?? "Unknown place"
     }
     
     private func layoutPlaceNameLabel() {
@@ -118,8 +124,8 @@ class PlaceCollectionViewCell: UICollectionViewCell,
         ])
     }
     
-    private func setVicinityLabel(vicinity: String?) {
-        placeVicinityLabel.text = vicinity ?? "Location vicinity missing"
+    private func setVicinityLabel(place: PlaceModel) {
+        placeVicinityLabel.text = place.vicinity ?? "Location vicinity missing"
     }
     
     private func layoutPlaceVicinityLabel() {
@@ -134,8 +140,9 @@ class PlaceCollectionViewCell: UICollectionViewCell,
         ])
     }
     
-    private func setRatingLabel(rating: Double) {
-        placeRatingLabel.text = String(rating)
+    private func setRatingLabel(place: PlaceModel) {
+        guard let rating = place.rating else { return }
+        placeRatingLabel.text = rating.stringValue
     }
     
     private func layoutPlaceRatingLabel() {
