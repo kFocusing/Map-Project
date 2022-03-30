@@ -7,11 +7,16 @@
 
 import Foundation
 
-class NetworkService {
+protocol NetworkServiceProtocol {
+    func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void)
+}
+
+
+class NetworkService: NetworkServiceProtocol {
     //MARK: - Static -
     static let shared = NetworkService()
     
-    private init() {}
+    init() {}
     
     //MARK: - Internal -
     func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
