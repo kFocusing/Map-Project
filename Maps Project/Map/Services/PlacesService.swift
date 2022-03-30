@@ -9,12 +9,10 @@ import Foundation
 import CoreLocation
 
 class PlacesService {
-    
-    private let baseURL = ""
-    
     //MARK: - Static -
     static let shared = PlacesService()
     
+    //MARK: - Life Cycle -
     private init() {}
     
     //MARK: - Internal -

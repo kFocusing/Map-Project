@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    //MARK: - Variables -
     private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero,
                                 style: .grouped)
@@ -21,12 +22,14 @@ class DetailViewController: UIViewController {
     
     var presenter: DetailViewPresenterProtocol!
     
+    //MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
     }
     
+    //MARK: - Private -
     private func setupTableView() {
         layoutTableView()
         PlaceXibTableViewCell.registerXIB(in: tableView)
@@ -42,6 +45,8 @@ class DetailViewController: UIViewController {
     }
 }
 
+//MARK: - Extension -
+//MARK: - DetailViewProtocol -
 extension DetailViewController: DetailViewProtocol {
     func succes() {
         tableView.reloadData()
@@ -51,7 +56,7 @@ extension DetailViewController: DetailViewProtocol {
         print(error.localizedDescription)
     }
 }
-
+//MARK: - UITableViewDataSource, UITableViewDelegate -
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.places.count

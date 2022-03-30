@@ -9,7 +9,6 @@ import Foundation
 import CoreLocation
 import GoogleMaps
 
-
 //MARK: - Protocols -
 //MARK: - LocationManagerDelegate -
 protocol LocationManagerDelegate: AnyObject {

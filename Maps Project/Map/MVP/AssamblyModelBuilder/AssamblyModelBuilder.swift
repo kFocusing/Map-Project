@@ -7,12 +7,18 @@
 
 import UIKit
 
+//MARK: - Protocols -
+//MARK: - AssamblyBuilderProtocol -
 protocol AssamblyBuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController
     func createDetailModule(router: RouterProtocol, places: [PlaceModel]) -> UIViewController
 }
 
+//MARK: - Class -
+//MARK: - AssamblyModelBuilder -
 class AssamblyModelBuilder: AssamblyBuilderProtocol {
+    
+    //MARK: - Internal -
     func createMainModule(router: RouterProtocol) -> UIViewController {
         let view = MapViewController()
         let networkService = NetworkService()

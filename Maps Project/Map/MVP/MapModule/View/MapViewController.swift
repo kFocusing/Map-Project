@@ -10,11 +10,14 @@ import GoogleMaps
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+    //MARK: - Variables -
     private lazy var mapView: GMSMapView = {
-        let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultCameraZoom)
+        let camera = GMSCameraPosition.camera(withLatitude: 0,
+                                              longitude: 0,
+                                              zoom: defaultCameraZoom)
         var mapView = GMSMapView()
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect.zero,
+                                 camera: camera)
         mapView.setMinZoom(14, maxZoom: 20)
         mapView.settings.compassButton = true
         mapView.isMyLocationEnabled = true
@@ -51,6 +54,7 @@ class MapViewController: UIViewController {
     
     var presenter: MapViewPresenterProtocol!
     
+    //MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutMap()
@@ -58,6 +62,7 @@ class MapViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    //MARK: - Private -
     @objc private func placeListButtonPressed() {
         presenter.tapPlaceListButton()
     }
@@ -71,12 +76,16 @@ class MapViewController: UIViewController {
         NSLayoutConstraint.activate([
             placeListButton.heightAnchor.constraint(equalToConstant: placeListButton.frame.size.height),
             placeListButton.widthAnchor.constraint(equalToConstant: placeListButton.frame.size.width),
-            placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
-            placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11)
+            placeListButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                    constant: -120),
+            placeListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                      constant: -11)
         ])
     }
 }
 
+//MARK: - Extensions -
+//MARK: - MapViewProtocol -
 extension MapViewController: MapViewProtocol {
     func setCameraToLocation(position: GMSCameraPosition) {
         mapView.animate(to: position)

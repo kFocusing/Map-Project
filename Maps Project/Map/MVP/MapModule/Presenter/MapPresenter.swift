@@ -9,6 +9,8 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 
+//MARK: - Protocols -
+//MARK: - MapViewProtocol -
 protocol MapViewProtocol: AnyObject {
     func setCameraToLocation(position: GMSCameraPosition)
     func clearMapView()
@@ -16,7 +18,7 @@ protocol MapViewProtocol: AnyObject {
                                      description: (placeName: String,
                                                    placeAddress: String))
 }
-
+//MARK: - MapViewPresenterProtocol -
 protocol MapViewPresenterProtocol: AnyObject {
     init(view: MapViewProtocol,
          networkService: NetworkService,
@@ -30,12 +32,17 @@ protocol MapViewPresenterProtocol: AnyObject {
     func viewDidLoad()
 }
 
+//MARK: - Class -
+//MARK: - MapPresenter -
 class MapPresenter: MapViewPresenterProtocol {
+    
+    //MARK: - Variables -
     weak var view: MapViewProtocol?
     var router: RouterProtocol?
     let networkService: NetworkServiceProtocol!
     var places = [PlaceModel]()
     
+    //MARK: - Life Cycle -
     required init(view: MapViewProtocol,
                   networkService: NetworkService,
                   router: RouterProtocol) {
@@ -44,6 +51,7 @@ class MapPresenter: MapViewPresenterProtocol {
         self.router = router
     }
     
+    //MARK: - Internal -
     func viewDidLoad() {
         setupLocationManager()
     }
