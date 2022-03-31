@@ -5,7 +5,6 @@
 //  Created by Danylo Klymov on 15.02.2022.
 //
 
-
 import GoogleMaps
 
 class GoogleService {

@@ -7,10 +7,15 @@
 
 import UIKit
 
+//MARK: - Protocols -
+//MARK: - CellDequeueReusable -
 protocol CellDequeueReusable: UITableViewCell { }
 
+//MARK: - CellRegistable -
 protocol CellRegistable: UITableViewCell { }
 
+//MARK: - Extensions -
+//MARK: - CellRegistable -
 extension CellRegistable {
     static func register(in tableView: UITableView) {
         tableView.register(Self.self, forCellReuseIdentifier: String(describing: self))
@@ -22,27 +27,10 @@ extension CellRegistable {
     }
 }
 
+//MARK: - CellDequeueReusable -
 extension CellDequeueReusable {
     static func dequeueCell(in tableView: UITableView, indexPath: IndexPath) -> Self {
         return tableView.dequeueReusableCell(withIdentifier: String(describing: Self.self),
                                              for: indexPath) as! Self
-    }
-}
-
-
-protocol CollectionCellDequeueReusable: UICollectionViewCell { }
-
-protocol CollectionCellRegistable: UICollectionViewCell { }
-
-extension CollectionCellRegistable {
-    static func register(in collectionView: UICollectionView) {
-        collectionView.register(Self.self, forCellWithReuseIdentifier: String(describing: self))
-    }
-}
-
-extension CollectionCellDequeueReusable {
-    static func dequeueCellWithType(in collectionView: UICollectionView, indexPath: IndexPath) -> Self {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: Self.self),
-                                                  for: indexPath) as! Self
     }
 }

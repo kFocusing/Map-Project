@@ -7,7 +7,11 @@
 
 import UIKit
 
-class BaseTableViewCell: UITableViewCell, CellRegistable, CellDequeueReusable {
+class BaseTableViewCell: UITableViewCell,
+                            CellRegistable,
+                            CellDequeueReusable {
+    
+    //MARK: - Life Cycle -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -15,5 +19,6 @@ class BaseTableViewCell: UITableViewCell, CellRegistable, CellDequeueReusable {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.selectionStyle = .none
     }
 }

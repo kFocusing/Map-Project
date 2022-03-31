@@ -24,8 +24,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location vicinity missing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-9M-2sd">
-                                <rect key="frame" x="130" y="52" width="274" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Location vicinity missing" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-9M-2sd">
+                                <rect key="frame" x="130" y="52" width="274" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,13 +49,13 @@
                             <constraint firstAttribute="trailing" secondItem="a18-3z-JPb" secondAttribute="trailing" constant="10" id="299-9C-Hk2"/>
                             <constraint firstItem="YWg-tU-KHi" firstAttribute="trailing" secondItem="aXd-9M-2sd" secondAttribute="trailing" id="2Ei-zE-0oH"/>
                             <constraint firstItem="aXd-9M-2sd" firstAttribute="leading" secondItem="a18-3z-JPb" secondAttribute="leading" id="3rZ-vF-UCD"/>
-                            <constraint firstItem="YWg-tU-KHi" firstAttribute="top" secondItem="aXd-9M-2sd" secondAttribute="bottom" constant="21" id="LEa-LH-P6v"/>
                             <constraint firstItem="YWg-tU-KHi" firstAttribute="leading" secondItem="aXd-9M-2sd" secondAttribute="leading" id="Rkg-0c-YSd"/>
                             <constraint firstItem="aXd-9M-2sd" firstAttribute="top" secondItem="a18-3z-JPb" secondAttribute="bottom" constant="16" id="V6c-as-EXP"/>
                             <constraint firstItem="uQi-AN-EA2" firstAttribute="centerY" secondItem="Keo-h2-eTq" secondAttribute="centerY" id="Xuh-cJ-CkI"/>
                             <constraint firstItem="aXd-9M-2sd" firstAttribute="trailing" secondItem="a18-3z-JPb" secondAttribute="trailing" id="YQY-fH-blc"/>
                             <constraint firstItem="a18-3z-JPb" firstAttribute="leading" secondItem="uQi-AN-EA2" secondAttribute="trailing" constant="10" id="aEs-hy-B0H"/>
                             <constraint firstItem="uQi-AN-EA2" firstAttribute="leading" secondItem="Keo-h2-eTq" secondAttribute="leading" constant="10" id="acz-xP-bNJ"/>
+                            <constraint firstItem="YWg-tU-KHi" firstAttribute="top" secondItem="aXd-9M-2sd" secondAttribute="bottom" constant="13" id="m4Z-Sn-p1G"/>
                             <constraint firstItem="a18-3z-JPb" firstAttribute="top" secondItem="Keo-h2-eTq" secondAttribute="top" constant="15" id="sn8-86-Csa"/>
                             <constraint firstAttribute="bottom" secondItem="YWg-tU-KHi" secondAttribute="bottom" constant="15" id="vq0-4D-xs4"/>
                         </constraints>

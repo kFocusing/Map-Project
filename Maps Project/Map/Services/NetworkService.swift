@@ -7,12 +7,11 @@
 
 import Foundation
 
-class NetworkService {
-    //MARK: - Static -
-    static let shared = NetworkService()
-    
-    private init() {}
-    
+protocol NetworkServiceProtocol {
+    func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void)
+}
+
+class NetworkService: NetworkServiceProtocol {
     //MARK: - Internal -
     func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
         let session = URLSession.shared
@@ -25,7 +24,6 @@ class NetworkService {
         }.resume()
     }
     
-    //MARK: - Enum -
     //MARK: - NetworkingError -
     private enum NetworkingError: Error {
         case failedResponseJSON

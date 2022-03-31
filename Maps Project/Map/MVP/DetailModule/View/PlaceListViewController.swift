@@ -1,8 +1,8 @@
 //
-//  PlacesListViewController.swift
+//  PlaceListViewController.swift
 //  Maps Project
 //
-//  Created by Danylo Klymov on 21.02.2022.
+//  Created by Danylo Klymov on 30.03.2022.
 //
 
 import UIKit
@@ -19,8 +19,8 @@ class PlaceListViewController: UIViewController {
         view.addSubview(table)
         return table
     }()
-    var places = [PlaceModel]()
     
+    var presenter: PlaceListPresenterProtocol!
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -29,12 +29,13 @@ class PlaceListViewController: UIViewController {
         setupTableView()
     }
     
+    //MARK: - Private -
     private func setupTableView() {
         layoutTableView()
         PlaceXibTableViewCell.registerXIB(in: tableView)
         tableView.reloadData()
     }
-   
+    
     private func layoutTableView() {
         tableView.pinEdges(to: self.view)
     }
@@ -44,18 +45,15 @@ class PlaceListViewController: UIViewController {
     }
 }
 
-
-//MARK: - Extensions -
 //MARK: - UITableViewDataSource -
-extension PlaceListViewController: UITableViewDataSource, UITableViewDelegate {
+extension PlaceListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places.count
+        return presenter.itemsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = PlaceXibTableViewCell.dequeueCell(in: tableView, indexPath: indexPath)
-        let place = places[indexPath.row]
-        cell.configure(with: place)
+        cell.configure(with: presenter.item(at: indexPath.item))
         return cell
     }
     
@@ -67,3 +65,8 @@ extension PlaceListViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
 }
+
+//MARK: - UITableViewDelegate -
+extension PlaceListViewController: UITableViewDelegate { }
+
+extension PlaceListViewController: PlaceListViewProtocol { }
