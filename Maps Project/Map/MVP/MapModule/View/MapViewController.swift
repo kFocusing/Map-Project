@@ -51,8 +51,9 @@ class MapViewController: UIViewController {
                                   for: .touchUpInside)
         return placeListButton
     }()
+    private let defaultCameraZoom: Float = 16
     
-    var presenter: MapViewPresenterProtocol!
+    var presenter: MapPresenterProtocol!
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -103,5 +104,24 @@ extension MapViewController: MapViewProtocol {
     
     func clearMapView() {
         mapView.clear()
+    }
+    
+    func update(with location: CLLocation) {
+        setCameraToLocation(position: GMSCameraPosition(latitude: location.coordinate.latitude,
+                                                        longitude: location.coordinate.longitude,
+                                                        zoom: defaultCameraZoom))
+        clearMapView()
+    }
+    
+    func displayPlaces(_ places: [PlaceModel]) {
+        for place in places {
+            guard let lat = place.geometry?.location?.lat,
+                  let lng = place.geometry?.location?.lng else { return }
+            let name = place.name ?? ""
+            let vicinity = place.vicinity ?? ""
+            let description = (placeName: name, placeAddress: vicinity)
+            let cordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+            setMarkerToLocation(cordinate: cordinate, description: description)
+        }
     }
 }

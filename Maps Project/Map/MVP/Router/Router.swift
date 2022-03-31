@@ -7,52 +7,47 @@
 
 import UIKit
 
-//MARK: - Protocols -
-//MARK: - RouterMain -
 protocol RouterMain {
     var navigationController: UINavigationController? { get set }
-    var assamblyBuilder: AssamblyBuilderProtocol? { get set }
+    var assemblyBuilder: AssemblyBuilderProtocol? { get set }
 }
-//MARK: - RouterProtocol -
+
 protocol RouterProtocol: RouterMain {
-    func initialViewContoller()
-    func showDetail(places: [PlaceModel])
+    func showMapViewController()
+    func showPlaceList(places: [PlaceModel])
     func popToRoot()
 }
 
-//MARK: - Class -
-//MARK: - Router - 
 class Router: RouterProtocol {
     
     //MARK: - Variables -
-    var assamblyBuilder: AssamblyBuilderProtocol?
+    var assemblyBuilder: AssemblyBuilderProtocol?
     var navigationController: UINavigationController?
     
     //MARK: - Life Cycle -
     init(navigationController: UINavigationController,
-         assamblyBuilder: AssamblyBuilderProtocol) {
+         assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationController = navigationController
-        self.assamblyBuilder = assamblyBuilder
+        self.assemblyBuilder = assemblyBuilder
     }
     
     //MARK: - Internal -
-    func initialViewContoller() {
-        if let navigationController = navigationController {
-            guard let mainViewController = assamblyBuilder?.createMainModule(router: self) else { return }
-            navigationController.viewControllers = [mainViewController]
-        }
+    func showMapViewController() {
+        guard let mapViewController =
+                assemblyBuilder?.createMapModule(router: self) else { return }
+        navigationController?.viewControllers = [mapViewController]
     }
     
-    func showDetail(places: [PlaceModel]) {
-        if let navigationController = navigationController {
-            guard let detailViewController = assamblyBuilder?.createDetailModule(router: self, places: places) else { return }
-            navigationController.pushViewController(detailViewController, animated: true)
-        }
+    func showPlaceList(places: [PlaceModel]) {
+        guard let placeListViewController =
+                assemblyBuilder?.createPlaceListModule(router: self,
+                                                       places: places) else { return }
+        navigationController?.pushViewController(placeListViewController,
+                                                 animated: true)
+        
     }
     
     func popToRoot() {
-        if let navigationController = navigationController {
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
 }

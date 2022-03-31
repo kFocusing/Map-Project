@@ -9,32 +9,27 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 
-//MARK: - Protocols -
-//MARK: - MapViewProtocol -
 protocol MapViewProtocol: AnyObject {
     func setCameraToLocation(position: GMSCameraPosition)
     func clearMapView()
     func setMarkerToLocation(cordinate: CLLocationCoordinate2D,
                                      description: (placeName: String,
                                                    placeAddress: String))
+    func update(with: CLLocation)
+    func displayPlaces(_: [PlaceModel])
 }
-//MARK: - MapViewPresenterProtocol -
-protocol MapViewPresenterProtocol: AnyObject {
+
+protocol MapPresenterProtocol: AnyObject {
     init(view: MapViewProtocol,
          networkService: NetworkService,
          router: RouterProtocol)
-    func setCameraToLocation(location: CLLocation)
     func setupLocationManager()
     func getAroundPlaces(location: CLLocation)
-    func updatePlaces(placeInfromation: [PlaceModel])
-    func setAroundsMarkersInMap()
     func tapPlaceListButton()
     func viewDidLoad()
 }
 
-//MARK: - Class -
-//MARK: - MapPresenter -
-class MapPresenter: MapViewPresenterProtocol {
+class MapPresenter: MapPresenterProtocol {
     
     //MARK: - Variables -
     weak var view: MapViewProtocol?
@@ -56,20 +51,14 @@ class MapPresenter: MapViewPresenterProtocol {
         setupLocationManager()
     }
     
-    func setCameraToLocation(location: CLLocation) {
-        let position = GMSCameraPosition(latitude: location.coordinate.latitude,
-                                         longitude: location.coordinate.longitude,
-                                         zoom: defaultCameraZoom)
-        self.view?.setCameraToLocation(position: position)
-    }
-    
     func setupLocationManager() {
         LocationManager.shared.delegate = self
         LocationManager.shared.start()
     }
     
     func getAroundPlaces(location: CLLocation) {
-        PlacesService.shared.fetchNearbyPlaces(location: location) { [weak self] places in
+        PlacesService.shared.fetchNearbyPlaces(location: location,
+                                               networkService: networkService) { [weak self] places in
             guard let places = places?.results else { return }
             self?.updatePlaces(placeInfromation: places)
         }
@@ -77,34 +66,19 @@ class MapPresenter: MapViewPresenterProtocol {
     
     func updatePlaces(placeInfromation: [PlaceModel]) {
         DispatchQueue.main.async {
-            self.view?.clearMapView()
             self.places = placeInfromation
-            self.setAroundsMarkersInMap()
-        }
-    }
-    
-    func setAroundsMarkersInMap() {
-        for place in places {
-            guard let lat = place.geometry?.location?.lat,
-                  let lng = place.geometry?.location?.lng else { return }
-            let name = place.name ?? ""
-            let vicinity = place.vicinity ?? ""
-            let description = (placeName: name, placeAddress: vicinity)
-            let cordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-            view?.setMarkerToLocation(cordinate: cordinate, description: description)
+            self.view?.displayPlaces(placeInfromation)
         }
     }
     
     func tapPlaceListButton() {
-        router?.showDetail(places: places)
+        router?.showPlaceList(places: places)
     }
 }
 
-//MARK: - Extensions -
-//MARK: - LocationManagerDelegate -
 extension MapPresenter: LocationManagerDelegate {
     func didUpdateLocation(location: CLLocation) {
-        setCameraToLocation(location: location)
+        view?.update(with: location)
         getAroundPlaces(location: location)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  AssamblyModelBuilder.swift
+//  AssemblyModelBuilder.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 30.03.2022.
@@ -7,19 +7,15 @@
 
 import UIKit
 
-//MARK: - Protocols -
-//MARK: - AssamblyBuilderProtocol -
-protocol AssamblyBuilderProtocol {
-    func createMainModule(router: RouterProtocol) -> UIViewController
-    func createDetailModule(router: RouterProtocol, places: [PlaceModel]) -> UIViewController
+protocol AssemblyBuilderProtocol {
+    func createMapModule(router: RouterProtocol) -> UIViewController
+    func createPlaceListModule(router: RouterProtocol, places: [PlaceModel]) -> UIViewController
 }
 
-//MARK: - Class -
-//MARK: - AssamblyModelBuilder -
-class AssamblyModelBuilder: AssamblyBuilderProtocol {
+class AssemblyModelBuilder: AssemblyBuilderProtocol {
     
     //MARK: - Internal -
-    func createMainModule(router: RouterProtocol) -> UIViewController {
+    func createMapModule(router: RouterProtocol) -> UIViewController {
         let view = MapViewController()
         let networkService = NetworkService()
         let presenter = MapPresenter(view: view,
@@ -29,10 +25,10 @@ class AssamblyModelBuilder: AssamblyBuilderProtocol {
         return view
     }
 
-    func createDetailModule(router: RouterProtocol,
+    func createPlaceListModule(router: RouterProtocol,
                             places: [PlaceModel]) -> UIViewController {
-        let view = DetailViewController()
-        let presenter = DetailPresenter(view: view,
+        let view = PlaceListViewController()
+        let presenter = PlaceListPresenter(view: view,
                                         router: router,
                                         places: places)
         view.presenter = presenter

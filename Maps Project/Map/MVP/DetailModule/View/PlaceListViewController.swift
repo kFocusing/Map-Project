@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  PlaceListViewController.swift
 //  Maps Project
 //
 //  Created by Danylo Klymov on 30.03.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class PlaceListViewController: UIViewController {
     
     //MARK: - Variables -
     private lazy var tableView: UITableView = {
@@ -20,7 +20,7 @@ class DetailViewController: UIViewController {
         return table
     }()
     
-    var presenter: DetailViewPresenterProtocol!
+    var presenter: PlaceListPresenterProtocol!
     
     //MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -45,28 +45,16 @@ class DetailViewController: UIViewController {
     }
 }
 
-//MARK: - Extension -
-//MARK: - DetailViewProtocol -
-extension DetailViewController: DetailViewProtocol {
-    func succes() {
-        tableView.reloadData()
-    }
-    
-    func failure(error: Error) {
-        print(error.localizedDescription)
-    }
-}
-//MARK: - UITableViewDataSource, UITableViewDelegate -
-extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension PlaceListViewController: PlaceListViewProtocol { }
+
+extension PlaceListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.places.count
+        return presenter.itemsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = PlaceXibTableViewCell.dequeueCell(in: tableView, indexPath: indexPath)
-        let place = presenter.places[indexPath.item]
-        cell.selectionStyle = .none
-        cell.configure(with: place)
+        cell.configure(with: presenter.item(at: indexPath.item))
         return cell
     }
     

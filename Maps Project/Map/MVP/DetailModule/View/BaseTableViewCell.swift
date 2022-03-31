@@ -19,5 +19,6 @@ class BaseTableViewCell: UITableViewCell,
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.selectionStyle = .none
     }
 }

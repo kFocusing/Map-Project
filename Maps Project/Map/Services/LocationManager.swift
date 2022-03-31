@@ -9,8 +9,6 @@ import Foundation
 import CoreLocation
 import GoogleMaps
 
-//MARK: - Protocols -
-//MARK: - LocationManagerDelegate -
 protocol LocationManagerDelegate: AnyObject {
     func didUpdateLocation(location: CLLocation)
 }
@@ -45,8 +43,6 @@ class LocationManager: NSObject {
     }
 }
 
-//MARK: - Extensions -
-//MARK: - CLLocationManagerDelegate -
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }

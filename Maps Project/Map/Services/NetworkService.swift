@@ -7,17 +7,11 @@
 
 import Foundation
 
-//MARK: - Protocols -
-//MARK: - NetworkServiceProtocol -
 protocol NetworkServiceProtocol {
     func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
-//MARK: - Class -
-//MARK: - NetworkService -
 class NetworkService: NetworkServiceProtocol {
-    //MARK: - Static -
-    static let shared = NetworkService()
     
     //MARK: - Life Cycle -
     init() {}
@@ -34,7 +28,6 @@ class NetworkService: NetworkServiceProtocol {
         }.resume()
     }
     
-    //MARK: - Enum -
     //MARK: - NetworkingError -
     private enum NetworkingError: Error {
         case failedResponseJSON
