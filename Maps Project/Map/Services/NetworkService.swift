@@ -12,10 +12,6 @@ protocol NetworkServiceProtocol {
 }
 
 class NetworkService: NetworkServiceProtocol {
-    
-    //MARK: - Life Cycle -
-    init() {}
-    
     //MARK: - Internal -
     func getData(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
         let session = URLSession.shared

@@ -45,9 +45,8 @@ class PlaceListViewController: UIViewController {
     }
 }
 
-extension PlaceListViewController: PlaceListViewProtocol { }
-
-extension PlaceListViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: - UITableViewDataSource -
+extension PlaceListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.itemsCount()
     }
@@ -66,3 +65,8 @@ extension PlaceListViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
 }
+
+//MARK: - UITableViewDelegate -
+extension PlaceListViewController: UITableViewDelegate { }
+
+extension PlaceListViewController: PlaceListViewProtocol { }

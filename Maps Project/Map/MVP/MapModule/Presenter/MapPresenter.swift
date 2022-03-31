@@ -16,7 +16,7 @@ protocol MapViewProtocol: AnyObject {
                                      description: (placeName: String,
                                                    placeAddress: String))
     func update(with: CLLocation)
-    func displayPlaces(_: [PlaceModel])
+    func displayPlaces(_ places: [PlaceModel])
 }
 
 protocol MapPresenterProtocol: AnyObject {
@@ -60,14 +60,14 @@ class MapPresenter: MapPresenterProtocol {
         PlacesService.shared.fetchNearbyPlaces(location: location,
                                                networkService: networkService) { [weak self] places in
             guard let places = places?.results else { return }
-            self?.updatePlaces(placeInfromation: places)
+            self?.updatePlaces(places: places)
         }
     }
     
-    func updatePlaces(placeInfromation: [PlaceModel]) {
+    func updatePlaces(places: [PlaceModel]) {
         DispatchQueue.main.async {
-            self.places = placeInfromation
-            self.view?.displayPlaces(placeInfromation)
+            self.places = places
+            self.view?.displayPlaces(places)
         }
     }
     
