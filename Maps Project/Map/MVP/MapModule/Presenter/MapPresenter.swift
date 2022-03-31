@@ -35,7 +35,7 @@ class MapPresenter: MapPresenterProtocol {
     weak var view: MapViewProtocol?
     var router: RouterProtocol?
     let networkService: NetworkServiceProtocol!
-    var places = [PlaceModel]()
+    private var places = [PlaceModel]()
     
     //MARK: - Life Cycle -
     required init(view: MapViewProtocol,
